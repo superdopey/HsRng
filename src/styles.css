@@ -44,6 +44,10 @@ width:500px;
   max-width: 100px;
   float:left;
 }
+
+.test-git{
+  color:#fff;
+}
 /*
 .player-hand-container li:first-child{
    -ms-transform: rotate(30deg); 
