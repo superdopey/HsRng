@@ -1,0 +1,122 @@
+body{
+  padding:0;
+  margin:0;
+}
+
+textarea, input, button { outline: none; }
+
+.container{
+  
+  width:1280px;
+  height: 720px;
+  position: relative;  
+  margin-left:auto;
+  margin-right:auto;
+  background-image: url('app/img/board_uldaman.png');
+  background-size: 100%;
+}
+
+.left-side,.right-side,.pull-left{
+  float:left;
+}
+
+.left-side{
+  width:auto;
+  display: inline-block;
+}
+
+.right-side{
+  position: relative;
+  width:1105px;
+  height: 100%;
+}
+
+.player-hand-container{
+  position: absolute;
+background-color: silver;
+bottom:0;
+left:200px;
+height: 100px;
+width:500px;
+}
+
+.player-hand-container li{
+  max-width: 100px;
+  float:left;
+}
+/*
+.player-hand-container li:first-child{
+   -ms-transform: rotate(30deg); 
+    -webkit-transform: rotate(30deg); 
+    transform: rotate(30deg);
+}*/
+
+
+.player-hand-container img{
+  width:100%
+}
+
+.suggestions{
+ 
+  width:175px;
+  height: 525px;
+  background-image: url('app/img/card-selector.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin-top: 0px;
+}
+
+
+
+.card-search{
+  position: relative; 
+  margin-top: 100px;
+
+   background-image: url('app/img/bg-search-box.png');
+  background-size: 100%;
+   
+  background-repeat: no-repeat;
+ 
+}
+
+.card-search input{
+  border:none;
+  background-color: transparent;
+  padding-left:15px;  
+  height: 32px;
+  color:#F4C2A1;
+
+}
+
+.card-search ul{
+  position: absolute;
+  padding-left:15px;
+  margin-top:40px;
+  z-index: 10;
+  overflow-y: hidden;
+  height: 440px;
+
+}
+
+.card-search img{
+  max-width: 120px;
+}
+
+.card-container ul{
+  clear: both;
+}
+
+li,ul{
+  list-style: none;
+  padding:0;
+  margin:0; 
+}
+
+
+.card-container li{  
+  float:left;
+}
+
+.highlighted{
+  background-color: #cecece;
+}

@@ -1,0 +1,25 @@
+NPM 
+
+1.) installeren node modules: 
+        npm install
+
+2.) runnen node server:
+        npm start
+
+
+
+VS Code: 
+
+Tsconfig:
+https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+
+https://code.visualstudio.com/docs/getstarted/userinterface
+
+1.) Start terminal
+Ctrl+` 
+
+
+
+Angular:
+
+Declare components in app.model.ts
