@@ -16,8 +16,10 @@ var AppComponent = (function () {
     function AppComponent(cardService) {
         this.cardService = cardService;
         this.playerHandCards = [];
+        this.maxCardsPlayerHand = 10;
         this.title = 'My Cards';
     }
+    ;
     //interface
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -29,7 +31,11 @@ var AppComponent = (function () {
     };
     //events
     AppComponent.prototype.onCardSelected = function (card) {
-        this.playerHandCards[this.playerHandCards.length] = card;
+        if (this.playerHandCards.length < this.maxCardsPlayerHand)
+            this.playerHandCards[this.playerHandCards.length] = card;
+    };
+    AppComponent.prototype.onCardPlayed = function (card) {
+        console.log("card played", card);
     };
     return AppComponent;
 }());

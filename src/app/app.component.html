@@ -3,6 +3,6 @@
         <card-search (onCardSelected)="onCardSelected($event)" [cards]="cards"></card-search>
     </div>
     <div class="right-side">
-        <player-hand [cards]="playerHandCards"></player-hand>
+        <player-hand [cards]="playerHandCards" (onCardPlayed)="onCardPlayed($event)"></player-hand>
     </div>
 </div>

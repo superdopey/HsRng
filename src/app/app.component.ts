@@ -6,8 +6,8 @@ import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  templateUrl:  './app.component.html',
-  providers: [CardService] 
+  templateUrl: './app.component.html',
+  providers: [CardService]
 })
 
 
@@ -15,30 +15,35 @@ import { OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   //fields
-  cards: Card[] ;
-  playerHandCards: Card[] = [] ;
-  title = 'My Cards'; 
-  
+  cards: Card[];
+  playerHandCards: Card[] = [];
+  maxCardsPlayerHand: number= 10;;
+  title = 'My Cards';
+
   //constructor
   constructor(private cardService: CardService) { }
 
   //interface
-   ngOnInit(): void {
-       this.cardService.getCards().then( cards => { 
-         this.cards = cards;          
+  ngOnInit(): void {
+    this.cardService.getCards().then(cards => {
+      this.cards = cards;
 
-         this.playerHandCards = cards.slice(9,19);
-        });
-       
-      //console.log(this.heroes);
-    }
+      this.playerHandCards = cards.slice(9, 19);
+    });
 
-    //events
-    onCardSelected(card:Card)
-    {
-              
-        this.playerHandCards[this.playerHandCards.length] = card;
-    }
-  
+    //console.log(this.heroes);
+  }
+
+  //events
+  onCardSelected(card: Card) {
+    if (this.playerHandCards.length < this.maxCardsPlayerHand)
+      this.playerHandCards[this.playerHandCards.length] = card;
+  }
+
+  onCardPlayed(card:Card){
+      console.log("card played",card);
+
+  }
+
 }
 

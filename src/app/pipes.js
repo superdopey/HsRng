@@ -15,7 +15,13 @@ var RotateStylePipe = (function () {
         var startDeg = -(range / 2);
         var step = range / (count - 1);
         var rotate = (step * (index + 0)) + startDeg;
-        return "rotate(" + rotate + "deg)";
+        // let translateY = rotate < 0 ? rotate * -1: rotate;
+        // if(count >= 5) translateY = translateY*2;
+        var x = (index + 1);
+        var h = count / 2;
+        var translateY = 1.2 * Math.pow(x - h, 2);
+        return "rotate(" + rotate + "deg) translateY(" + translateY + "px)";
+        // return "rotate(" + rotate + "deg) ";
     };
     return RotateStylePipe;
 }());
@@ -23,21 +29,20 @@ RotateStylePipe = __decorate([
     core_1.Pipe({ name: 'rotateStylePipe' })
 ], RotateStylePipe);
 exports.RotateStylePipe = RotateStylePipe;
-var HeightStylePipe = (function () {
-    function HeightStylePipe() {
+var MarginStylePipe = (function () {
+    function MarginStylePipe() {
     }
-    HeightStylePipe.prototype.transform = function (value, count, index) {
-        //     let range = 50;
-        //   let start = -(range / 2);
-        var step = (index + 1);
-        var h = count / 2;
-        var marginTop = 1.2 * Math.pow(step - h, 2);
-        return marginTop.toString() + "px";
+    MarginStylePipe.prototype.transform = function (value, count, index) {
+        var width = 700;
+        var marginLeft = count > 4 ? -(40 + (count * 3)) : -40;
+        if (index == 0)
+            marginLeft = 0;
+        return marginLeft + "px";
     };
-    return HeightStylePipe;
+    return MarginStylePipe;
 }());
-HeightStylePipe = __decorate([
-    core_1.Pipe({ name: 'heightStylePipe' })
-], HeightStylePipe);
-exports.HeightStylePipe = HeightStylePipe;
+MarginStylePipe = __decorate([
+    core_1.Pipe({ name: 'marginStylePipe' })
+], MarginStylePipe);
+exports.MarginStylePipe = MarginStylePipe;
 //# sourceMappingURL=pipes.js.map

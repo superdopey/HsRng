@@ -27,7 +27,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, card_search_component_1.CardSearchComponent, player_hand_component_1.PlayerHandComponent, pipes_1.RotateStylePipe, pipes_1.HeightStylePipe],
+        declarations: [app_component_1.AppComponent, card_search_component_1.CardSearchComponent, player_hand_component_1.PlayerHandComponent, pipes_1.RotateStylePipe, pipes_1.MarginStylePipe],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
