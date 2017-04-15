@@ -32,7 +32,7 @@ __decorate([
 PlayerHandComponent = __decorate([
     core_1.Component({
         selector: 'player-hand',
-        template: "      \n      <div *ngIf=\"cards\" class=\"player-hand-container\">                     \n        <ul *ngIf=\"cards\" class=\"cards\">\n        <li *ngFor=\"let card of cards\" class=\"player-card\">  \n            <img (dblclick)=\"removeCard(card)\"  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        </ul>      \n      </div>\n    \n  "
+        template: "      \n      <div *ngIf=\"cards\" class=\"player-hand-container\">                     \n        <ul *ngIf=\"cards\" class=\"cards\">\n        <li *ngFor=\"let card of cards; let i = index\" class=\"player-card\" [ngStyle]=\"{'transform': card | rotateStylePipe:cards.length:i , 'margin-top': card | heightStylePipe:cards.length:i}\"  >  \n    \n            <img (dblclick)=\"removeCard(card)\"  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        </ul>      \n      </div>\n    \n  "
     })
 ], PlayerHandComponent);
 exports.PlayerHandComponent = PlayerHandComponent;

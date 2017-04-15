@@ -2,12 +2,14 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Card } from '../models/card'
 import { ICardContainer } from '../models/icard-container'
 
+
 @Component({
     selector: 'player-hand',
     template: `      
       <div *ngIf="cards" class="player-hand-container">                     
         <ul *ngIf="cards" class="cards">
-        <li *ngFor="let card of cards" class="player-card">  
+        <li *ngFor="let card of cards; let i = index" class="player-card" [ngStyle]="{'transform': card | rotateStylePipe:cards.length:i , 'margin-top': card | heightStylePipe:cards.length:i}"  >  
+    
             <img (dblclick)="removeCard(card)"  src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" title="{{card.Name}}">
         </li>
         </ul>      
@@ -15,11 +17,16 @@ import { ICardContainer } from '../models/icard-container'
     
   `
 })
+
 export class PlayerHandComponent implements ICardContainer {
-   
+   // color| cardStylePipe:cards.length:i
 
     @Input() maxCards: number;
     @Input() cards: Card[];
+
+  
+
+    
 
     removeCard(card:Card)    {         
 
@@ -33,3 +40,6 @@ export class PlayerHandComponent implements ICardContainer {
     //  @Output() onCardSelected = new EventEmitter<Card>();
 
 }
+
+
+

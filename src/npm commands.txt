@@ -7,6 +7,14 @@ NPM
         npm start
 
 
+git
+
+/connect to online	repo
+git remote add origin <server>
+
+push to online master
+git push origin master
+
 
 VS Code: 
 
