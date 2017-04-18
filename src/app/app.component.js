@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var card_service_1 = require("./card.service");
 var AppComponent = (function () {
@@ -44,9 +43,7 @@ AppComponent = __decorate([
         selector: 'my-app',
         templateUrl: './app.component.html',
         providers: [card_service_1.CardService]
-    })
-    //todo targetContainer (playerHand,playerBoard, enemyboard)
-    ,
+    }),
     __metadata("design:paramtypes", [card_service_1.CardService])
 ], AppComponent);
 exports.AppComponent = AppComponent;

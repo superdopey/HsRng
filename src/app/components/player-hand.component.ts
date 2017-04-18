@@ -15,9 +15,7 @@ import { ICardContainer } from '../models/icard-container'
     
             <img (dblclick)="removeCard(card)" (click)="selectCard(card)"  src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" title="{{card.Name}}">
         </li>
-        </ul>      
-    
-    
+        </ul>   
   `
 })
 

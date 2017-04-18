@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'rotateStylePipe' })
 export class RotateStylePipe implements PipeTransform {
-    transform(value: object, count: number, index: number): string {
+    transform(value: any, count: number, index: number): string {
 
         let range =   40;
         let startDeg = -(range / 2);
@@ -31,7 +31,7 @@ export class RotateStylePipe implements PipeTransform {
 
 @Pipe({ name: 'marginStylePipe' })
 export class MarginStylePipe implements PipeTransform {
-    transform(value: object, count: number, index: number): string {   
+    transform(value: any, count: number, index: number): string {   
        let width = 700;
        let marginLeft = count > 4 ? -( 40 + (count*3)) :-40;
 

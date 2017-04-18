@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PlayerHandComponent = (function () {
     function PlayerHandComponent() {
@@ -48,7 +47,7 @@ __decorate([
 PlayerHandComponent = __decorate([
     core_1.Component({
         selector: 'player-hand',
-        template: "      \n                       \n        <div *ngIf=\"selectedCard\" class=\"tooltip\">\n            <img (dblclick)=\"deSelectCard(selectedCard)\" (click)=\"playCard(selectedCard)\" src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{selectedCard.Id}}.png\" title=\"{{selectedCard.Name}}\">\n        </div>\n        <ul *ngIf=\"cards\" class=\"player-hand-container\">\n        <li *ngFor=\"let card of cards; let i = index\" class=\"player-card\" [ngStyle]=\"{'transform': card | rotateStylePipe:cards.length:i,'margin-left': card|  marginStylePipe:cards.length:i  }\" >  \n    \n            <img (dblclick)=\"removeCard(card)\" (click)=\"selectCard(card)\"  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        </ul>      \n    \n    \n  "
+        template: "      \n                       \n        <div *ngIf=\"selectedCard\" class=\"tooltip\">\n            <img (dblclick)=\"deSelectCard(selectedCard)\" (click)=\"playCard(selectedCard)\" src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{selectedCard.Id}}.png\" title=\"{{selectedCard.Name}}\">\n        </div>\n        <ul *ngIf=\"cards\" class=\"player-hand-container\">\n        <li *ngFor=\"let card of cards; let i = index\" class=\"player-card\" [ngStyle]=\"{'transform': card | rotateStylePipe:cards.length:i,'margin-left': card|  marginStylePipe:cards.length:i  }\" >  \n    \n            <img (dblclick)=\"removeCard(card)\" (click)=\"selectCard(card)\"  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        </ul>   \n  "
     })
 ], PlayerHandComponent);
 exports.PlayerHandComponent = PlayerHandComponent;

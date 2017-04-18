@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var Card = (function () {
     function Card(Id, Name, Text, Flavor, Artist, Attack, Health, Cost, Rarity, CardClass, Collectible, Elite, Faction, Mechanics, Set, Type) {
         this.Id = Id;
