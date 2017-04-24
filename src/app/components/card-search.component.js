@@ -33,41 +33,47 @@ var CardSearchComponent = (function () {
         //  this.selectedCard = card;
     };
     CardSearchComponent.prototype.onKey = function (e) {
-        if (this.previousSearch != this.search)
-            this.selectedIndex = -1;
-        this.suggestions = this.filterCards(this.search);
-        //arrow-down(40)  up(38)
-        if (e.keyCode == 40) {
-            if (this.suggestions != null && this.suggestions.length > 0 && this.suggestions.length > this.selectedIndex) {
-                if (this.selectedIndex < this.suggestions.length - 1)
-                    this.selectedIndex++;
-                var card = this.suggestions[this.selectedIndex];
-                this.highlightedCardName = card.Name;
-            }
-            else
+        if (this.search != "") {
+            if (this.previousSearch != this.search)
                 this.selectedIndex = -1;
-        }
-        else if (e.keyCode == 38) {
-            if (this.suggestions != null && this.suggestions.length > 0 && this.selectedIndex > 0) {
-                if (this.selectedIndex < this.suggestions.length - 1)
-                    this.selectedIndex--;
-                var card = this.suggestions[this.selectedIndex];
-                this.highlightedCardName = card.Name;
-            }
-            else
-                this.selectedIndex = -1;
-        }
-        else if (e.keyCode == 13) {
-            //this.search = "";
-            if (this.suggestions != null && this.suggestions.length > 0) {
-                if (this.highlightedCardName == null)
-                    this.selectCard(this.suggestions[0]);
+            this.suggestions = this.filterCards(this.search);
+            //arrow-down(40)  up(38)
+            if (e.keyCode == 40) {
+                if (this.suggestions != null && this.suggestions.length > 0 && this.suggestions.length > this.selectedIndex) {
+                    if (this.selectedIndex < this.suggestions.length - 1)
+                        this.selectedIndex++;
+                    var card = this.suggestions[this.selectedIndex];
+                    this.highlightedCardName = card.Name;
+                }
                 else
-                    this.selectCard(this.suggestions[this.selectedIndex]);
+                    this.selectedIndex = -1;
             }
+            else if (e.keyCode == 38) {
+                if (this.suggestions != null && this.suggestions.length > 0 && this.selectedIndex > 0) {
+                    if (this.selectedIndex < this.suggestions.length - 1)
+                        this.selectedIndex--;
+                    var card = this.suggestions[this.selectedIndex];
+                    this.highlightedCardName = card.Name;
+                }
+                else
+                    this.selectedIndex = -1;
+            }
+            else if (e.keyCode == 13) {
+                //this.search = "";
+                if (this.suggestions != null && this.suggestions.length > 0) {
+                    if (this.highlightedCardName == null)
+                        this.selectCard(this.suggestions[0]);
+                    else
+                        this.selectCard(this.suggestions[this.selectedIndex]);
+                }
+            }
+            this.previousSearch = this.search;
         }
-        // console.log(this.selectedIndex);
-        this.previousSearch = this.search;
+        else {
+            this.selectedIndex = -1;
+            this.highlightedCardName = "";
+            this.suggestions = [];
+        }
     };
     CardSearchComponent.prototype.filterCards = function (search) {
         var _this = this;
@@ -96,7 +102,7 @@ __decorate([
 CardSearchComponent = __decorate([
     core_1.Component({
         selector: 'card-search',
-        template: "    \n      <div *ngIf=\"cards\" class=\"card-search\">        \n        <input [(ngModel)]=\"search\" (keyup)=\"onKey($event)\"  placeholder=\"search\"/> \n        <div class=\"suggestions\">       \n        <ul *ngIf=\"suggestions\" >\n        <li *ngFor=\"let card of suggestions\" (click)=\"selectCard(card)\" [class.highlighted]=\"card.Name === highlightedCardName\"  >\n             <img  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" alt=\"{ card.Name }\">                         \n        </li>\n        </ul>\n        </div>      \n      </div>\n    \n  "
+        template: "    \n      <div *ngIf=\"cards\" class=\"card-search\">        \n        <input [(ngModel)]=\"search\" (keyup)=\"onKey($event)\"  placeholder=\"search\"/> \n        <div class=\"suggestions\">       \n        <ul *ngIf=\"suggestions\" >\n        <li *ngFor=\"let card of suggestions\" (click)=\"selectCard(card)\" [class.highlighted]=\"card.Name === highlightedCardName\"  >\n            <span>{{card.Name}}</span>\n             <img  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" alt=\"{ card.Name }\">                         \n        </li>\n        </ul>\n        </div>      \n      </div>\n    \n  "
     })
 ], CardSearchComponent);
 exports.CardSearchComponent = CardSearchComponent;

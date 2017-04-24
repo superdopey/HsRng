@@ -11,6 +11,7 @@ import { Card, CardSet, CardType } from '../models/card'
         <div class="suggestions">       
         <ul *ngIf="suggestions" >
         <li *ngFor="let card of suggestions" (click)="selectCard(card)" [class.highlighted]="card.Name === highlightedCardName"  >
+            <span>{{card.Name}}</span>
              <img  src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" alt="{ card.Name }">                         
         </li>
         </ul>
@@ -56,38 +57,43 @@ export class CardSearchComponent {
 
     onKey(e: any) { // without type info
 
-        if (this.previousSearch != this.search) this.selectedIndex = -1;
-        this.suggestions = this.filterCards(this.search);
+        if (this.search != "") {
+            if (this.previousSearch != this.search) this.selectedIndex = -1;
+            this.suggestions = this.filterCards(this.search);
 
 
-        //arrow-down(40)  up(38)
-        if (e.keyCode == 40) {
-            if (this.suggestions != null && this.suggestions.length > 0 && this.suggestions.length > this.selectedIndex) {
-                if (this.selectedIndex < this.suggestions.length - 1) this.selectedIndex++;
+            //arrow-down(40)  up(38)
+            if (e.keyCode == 40) {
+                if (this.suggestions != null && this.suggestions.length > 0 && this.suggestions.length > this.selectedIndex) {
+                    if (this.selectedIndex < this.suggestions.length - 1) this.selectedIndex++;
 
-                let card = this.suggestions[this.selectedIndex];
-                this.highlightedCardName = card.Name;
-            } else this.selectedIndex = -1;
+                    let card = this.suggestions[this.selectedIndex];
+                    this.highlightedCardName = card.Name;
+                } else this.selectedIndex = -1;
 
-        } else if (e.keyCode == 38) { //up
+            } else if (e.keyCode == 38) { //up
 
-            if (this.suggestions != null && this.suggestions.length > 0 &&  this.selectedIndex > 0) {
-                if (this.selectedIndex < this.suggestions.length - 1) this.selectedIndex--;
+                if (this.suggestions != null && this.suggestions.length > 0 && this.selectedIndex > 0) {
+                    if (this.selectedIndex < this.suggestions.length - 1) this.selectedIndex--;
 
-                let card = this.suggestions[this.selectedIndex];
-                this.highlightedCardName = card.Name;
-            } else this.selectedIndex = -1;
-        } else if (e.keyCode == 13) {//enter
-            //this.search = "";
-            if (this.suggestions != null && this.suggestions.length > 0) {
-                if (this.highlightedCardName == null)
-                    this.selectCard(this.suggestions[0]);
-                else this.selectCard(this.suggestions[this.selectedIndex]);
+                    let card = this.suggestions[this.selectedIndex];
+                    this.highlightedCardName = card.Name;
+                } else this.selectedIndex = -1;
+            } else if (e.keyCode == 13) {//enter
+                //this.search = "";
+                if (this.suggestions != null && this.suggestions.length > 0) {
+                    if (this.highlightedCardName == null)
+                        this.selectCard(this.suggestions[0]);
+                    else this.selectCard(this.suggestions[this.selectedIndex]);
+                }
             }
-        }
 
-        // console.log(this.selectedIndex);
-        this.previousSearch = this.search;
+            this.previousSearch = this.search;
+        }else {
+            this.selectedIndex = -1;
+            this.highlightedCardName = "";
+            this.suggestions = [];
+        }
     }
 
     filterCards(search: string): Card[] {

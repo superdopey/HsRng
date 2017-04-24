@@ -11,9 +11,10 @@ import { ICardContainer } from '../models/icard-container'
             <img (dblclick)="deSelectCard(selectedCard)" (click)="playCard(selectedCard)" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{selectedCard.Id}}.png" title="{{selectedCard.Name}}">
         </div>
         <ul *ngIf="cards" class="player-hand-container">
-        <li *ngFor="let card of cards; let i = index" class="player-card" [ngStyle]="{'transform': card | rotateStylePipe:cards.length:i,'margin-left': card|  marginStylePipe:cards.length:i  }" >  
-    
-            <img (dblclick)="removeCard(card)" (click)="selectCard(card)"  src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" title="{{card.Name}}">
+        <li *ngFor="let card of cards; let i = index" 
+            (dblclick)="removeCard(card)" (click)="selectCard(card)"
+            class="player-card" [ngStyle]="{'transform': card | rotateStylePipe:cards.length:i,'margin-left': card|  marginStylePipe:cards.length:i  }" >      
+            <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" title="{{card.Name}}">
         </li>
         </ul>   
   `

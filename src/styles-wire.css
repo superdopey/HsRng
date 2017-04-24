@@ -1,0 +1,19 @@
+.wire .container,.wire .card-search,.wire .suggestions{  
+      background-image: none;
+      box-sizing: content-box;
+      border:solid 1px white;
+}
+
+.wire .player-hand-container li,.wire .suggestions li {
+      border:solid 1px white;
+}
+
+.wire .player-hand-container img,.wire .suggestions img {
+    visibility: hidden;
+}
+
+.wire .suggestions li span{
+      display: block;
+      color:white;
+}
+
