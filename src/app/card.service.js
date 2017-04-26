@@ -19,7 +19,14 @@ var CardService = (function () {
         this.http = http;
         this.cardsUrl = 'api/cards.collectible.json'; // URL to web API
     }
+    CardService.prototype.ngOnInit = function () {
+        var _this = this;
+        this.getCards().then(function (cards) {
+            _this.allCards = cards;
+        });
+    };
     CardService.prototype.getCards = function () {
+        console.log(this.allCards, "get cards");
         return this.http.get(this.cardsUrl)
             .toPromise()
             .then(this.extractData)
@@ -53,6 +60,7 @@ var CardService = (function () {
             var card = new card_1.Card(e.id, e.name, e.text, e.flavor, e.artist, e.attack, e.health, e.cost, e.rarity, e.cardClass, e.collectible, e.elite, e.faction, e.mechanics, e.set, e.type);
             result[result.length] = card;
         }
+        //this.allCards = result;
         //console.log(result)
         return result;
     };

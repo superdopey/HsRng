@@ -12,7 +12,13 @@ import { Card } from './models/card';
 
 
 @Injectable()
-export class CardService {
+export class CardService implements OnInit {
+    ngOnInit(): void {
+       this.getCards().then(cards => {
+      this.allCards = cards;
+    }); 
+    }
+
 
      private cardsUrl = 'api/cards.collectible.json';  // URL to web API
     private allCards:Card[];
@@ -20,16 +26,19 @@ export class CardService {
      constructor (private http: Http) {}
 
 getCards (): Promise<Card[]> {
-  return this.http.get(this.cardsUrl)
-                  .toPromise()
-                  .then(this.extractData)
-                  .catch(this.handleError);
+
+console.log(this.allCards, "get cards");
+  
+    return this.http.get(this.cardsUrl)
+                    .toPromise()
+                    .then(this.extractData)
+                    .catch(this.handleError);
 }
 
  filterCards(amount:number, mana:number): Card[] {
       if(this.allCards ==null)
       {
-
+ 
 
       }
 
@@ -52,7 +61,7 @@ getCards (): Promise<Card[]> {
         */
     }
 
-private extractData(res: Response) {
+private extractData(res: Response):Card[] {
   let body = res.json();
   let result:Card[] = [];
 
@@ -61,7 +70,7 @@ private extractData(res: Response) {
     result[result.length] = card;
 }
  
-
+  //this.allCards = result;
  
 //console.log(result)
   return result;
