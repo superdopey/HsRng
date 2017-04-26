@@ -15,6 +15,8 @@ var AppComponent = (function () {
     function AppComponent(cardService) {
         this.cardService = cardService;
         this.playerHandCards = [];
+        this.playerBoardCards = [];
+        this.enemyPlayerBoardCards = [];
         this.maxCardsPlayerHand = 10;
         this.title = 'My Cards';
     }
@@ -35,6 +37,10 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.onCardPlayed = function (card) {
         console.log("card played", card);
+        //full player board, eveolve
+        //random, all  minions
+        //random, enemies (minions and hero), arcane missiles
+        //ragnaros
     };
     return AppComponent;
 }());

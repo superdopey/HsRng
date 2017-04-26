@@ -4,11 +4,11 @@
       border:solid 1px white;
 }
 
-.wire .player-hand-container li,.wire .suggestions li {
+.wire .player-hand-container li,.wire .suggestions li ,.wire .tooltip div {
       border:solid 1px white;
 }
 
-.wire .player-hand-container img,.wire .suggestions img {
+.wire .player-hand-container img,.wire .suggestions img,.wire .tooltip img {
     visibility: hidden;
 }
 

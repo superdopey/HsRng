@@ -7,8 +7,11 @@ import { ICardContainer } from '../models/icard-container'
     selector: 'player-hand',
     template: `      
                        
-        <div *ngIf="selectedCard" class="tooltip">
-            <img (dblclick)="deSelectCard(selectedCard)" (click)="playCard(selectedCard)" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{selectedCard.Id}}.png" title="{{selectedCard.Name}}">
+        <div *ngIf="selectedCard" class="tooltip">            
+            <div>
+                <a (click)="playCard(selectedCard)" >Play</a>
+                <img (click)="deSelectCard(selectedCard)" src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{selectedCard.Id}}.png" title="{{selectedCard.Name}}">                
+            </div>
         </div>
         <ul *ngIf="cards" class="player-hand-container">
         <li *ngFor="let card of cards; let i = index" 

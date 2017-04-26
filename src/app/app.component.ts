@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
   //fields
   cards: Card[];
   playerHandCards: Card[] = [];
+  playerBoardCards: Card[] = [];
+  enemyPlayerBoardCards: Card[] = [];
+
   maxCardsPlayerHand: number= 10;;
   title = 'My Cards';
 
@@ -29,6 +32,8 @@ export class AppComponent implements OnInit {
       this.cards = cards;
 
       this.playerHandCards = cards.slice(9, 19);
+
+      
     });
 
     //console.log(this.heroes);
@@ -41,7 +46,17 @@ export class AppComponent implements OnInit {
   }
 
   onCardPlayed(card:Card){
+
       console.log("card played",card);
+
+      //full player board, eveolve
+
+      //random, all  minions
+
+      //random, enemies (minions and hero), arcane missiles
+
+      //ragnaros
+
 
   }
 

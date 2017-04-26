@@ -11,6 +11,7 @@ var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var card_search_component_1 = require("./components/card-search.component");
 var player_hand_component_1 = require("./components/player-hand.component");
+var player_board_component_1 = require("./components/player-board.component");
 var pipes_1 = require("./pipes");
 var http_1 = require("@angular/http");
 var AppModule = (function () {
@@ -26,7 +27,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, card_search_component_1.CardSearchComponent, player_hand_component_1.PlayerHandComponent, pipes_1.RotateStylePipe, pipes_1.MarginStylePipe],
+        declarations: [app_component_1.AppComponent, card_search_component_1.CardSearchComponent, player_hand_component_1.PlayerHandComponent, player_board_component_1.PlayerBoardComponent, pipes_1.RotateStylePipe, pipes_1.MarginStylePipe],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

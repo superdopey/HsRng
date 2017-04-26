@@ -2,6 +2,7 @@ body{
   padding:0;
   margin:0;
   background-color: #000000;
+  color:#fff;
 }
 
 textarea, input, button { outline: none; }
@@ -44,7 +45,6 @@ textarea, input, button { outline: none; }
 
 .player-hand-container li{
   max-width: 100px;
-
    margin-left:-40px;
   display: inline-block;
 }
@@ -57,8 +57,24 @@ textarea, input, button { outline: none; }
   width:100%
 }
 
-.suggestions{
- 
+/* player board */
+
+.player-board-container{
+  position: absolute;
+  bottom:250px;
+  left:100px;
+  height: 120px;
+  width:670px;
+  text-align: center;
+  background-color: rgba(0,0,0, 0.4)
+}
+
+.player-board-container.enemy{
+bottom:350px;
+}
+
+
+.suggestions{ 
   width:175px;
   height: 525px;
   background-image: url('app/img/card-selector.png');
@@ -124,3 +140,24 @@ li,ul{
 .highlighted{
   background-color: #cecece;
 }
+
+.tooltip{  
+  position: absolute;
+  bottom:140px;
+  left:0px;
+  height: 216px;
+  width:920px;
+  text-align: center;
+}
+
+.tooltip div{
+  display: inline-block;  
+}
+.tooltip img{
+  max-width: 150px; 
+  display: block;
+}
+
+
+
+
