@@ -108,6 +108,6 @@ export class CardSearchComponent {
                 return card.Name.toLowerCase().indexOf(search.toLowerCase()) > -1;
             }
             return false;
-        })
+        });
     }
 }

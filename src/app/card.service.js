@@ -25,6 +25,26 @@ var CardService = (function () {
             .then(this.extractData)
             .catch(this.handleError);
     };
+    CardService.prototype.filterCards = function (amount, mana) {
+        if (this.allCards == null) {
+        }
+        return null;
+        /*
+
+        return this.cards.filter((card: Card) => {
+            //console.log(this.StandardSets[0],card.Set);
+            if (card != null && this.search != null
+                && card.Name != undefined
+                && card.Set != undefined
+                && this.StandardSets.indexOf(CardSet[card.Set.toString()]) > -1
+                && this.InvalidTypes.indexOf(CardType[card.Type.toString()]) == -1
+            ) {
+                return card.Name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+            }
+            return false;
+        });
+        */
+    };
     CardService.prototype.extractData = function (res) {
         var body = res.json();
         var result = [];

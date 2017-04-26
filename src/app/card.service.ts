@@ -15,6 +15,8 @@ import { Card } from './models/card';
 export class CardService {
 
      private cardsUrl = 'api/cards.collectible.json';  // URL to web API
+    private allCards:Card[];
+
      constructor (private http: Http) {}
 
 getCards (): Promise<Card[]> {
@@ -23,6 +25,32 @@ getCards (): Promise<Card[]> {
                   .then(this.extractData)
                   .catch(this.handleError);
 }
+
+ filterCards(amount:number, mana:number): Card[] {
+      if(this.allCards ==null)
+      {
+
+
+      }
+
+
+    return null;
+        /*
+
+        return this.cards.filter((card: Card) => {
+            //console.log(this.StandardSets[0],card.Set);
+            if (card != null && this.search != null
+                && card.Name != undefined
+                && card.Set != undefined
+                && this.StandardSets.indexOf(CardSet[card.Set.toString()]) > -1
+                && this.InvalidTypes.indexOf(CardType[card.Type.toString()]) == -1
+            ) {
+                return card.Name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+            }
+            return false;
+        });
+        */
+    }
 
 private extractData(res: Response) {
   let body = res.json();

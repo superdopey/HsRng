@@ -25,7 +25,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.cardService.getCards().then(function (cards) {
-            _this.cards = cards;
+            _this.allCards = cards;
             _this.playerHandCards = cards.slice(9, 19);
         });
         //console.log(this.heroes);
