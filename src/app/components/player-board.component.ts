@@ -10,14 +10,17 @@ import { CardService } from '../card.service';
         <li *ngFor="let card of cards" (dblclick)="removeCard(card)" >      
             <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" title="{{card.Name}}">
         </li>
-        <li *ngIf="cards.length < 7">
-            <button (click)="fillCards()">fill board</button>
+        <li *ngIf="cards.length < 7">        
+            <div class="actions" >    
+             <button (click)="generateMinionBoard()">fill board</button>
             amount:<input [(ngModel)]="amount" maxLength="1" /><br/>
             mana:<input [(ngModel)]="mana"  maxLength="1" /><br/>
+           
+            </div>
         </li>
         </ul>   
   `,
-   providers: [CardService]
+   //providers: [CardService]
 })
 
 export class PlayerBoardComponent implements ICardContainer {  
@@ -44,20 +47,9 @@ export class PlayerBoardComponent implements ICardContainer {
             }
     }
 
-    fillCards(){
-        console.log(this.amount,this.mana);
-
-          this.cardService.getCards().then(cards => {
-
-      
-    });
-
-
+    generateMinionBoard(){        
+        this.cards =  this.cardService.generateMinionBoard(this.amount,this.mana);
     }
-
-    
-
-
 }
 
 

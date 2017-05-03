@@ -69,8 +69,19 @@ textarea, input, button { outline: none; }
   background-color: rgba(0,0,0, 0.4)
 }
 
+.player-board-container li{
+  max-width: 100px;   
+  display: inline-block;
+}
+
+.player-board-container img{
+  width:100%
+}
+
+/* player*/
+
 .player-board-container.enemy{
-bottom:380px;
+  bottom:380px;
 }
 
 
@@ -158,6 +169,8 @@ li,ul{
   display: block;
 }
 
-
+.actions input {
+  width: 100px;
+}
 
 

@@ -21,10 +21,8 @@ var PlayerBoardComponent = (function () {
             this.cards.splice(index, 1);
         }
     };
-    PlayerBoardComponent.prototype.fillCards = function () {
-        console.log(this.amount, this.mana);
-        this.cardService.getCards().then(function (cards) {
-        });
+    PlayerBoardComponent.prototype.generateMinionBoard = function () {
+        this.cards = this.cardService.generateMinionBoard(this.amount, this.mana);
     };
     return PlayerBoardComponent;
 }());
@@ -39,8 +37,7 @@ __decorate([
 PlayerBoardComponent = __decorate([
     core_1.Component({
         selector: 'player-board',
-        template: "      \n        <ul *ngIf=\"cards\" class=\"player-board-container\" [class.enemy]=\"isEnemy === true\">\n        <li *ngFor=\"let card of cards\" (dblclick)=\"removeCard(card)\" >      \n            <img src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        <li *ngIf=\"cards.length < 7\">\n            <button (click)=\"fillCards()\">fill board</button>\n            amount:<input [(ngModel)]=\"amount\" maxLength=\"1\" /><br/>\n            mana:<input [(ngModel)]=\"mana\"  maxLength=\"1\" /><br/>\n        </li>\n        </ul>   \n  ",
-        providers: [card_service_1.CardService]
+        template: "      \n        <ul *ngIf=\"cards\" class=\"player-board-container\" [class.enemy]=\"isEnemy === true\">\n        <li *ngFor=\"let card of cards\" (dblclick)=\"removeCard(card)\" >      \n            <img src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        <li *ngIf=\"cards.length < 7\">        \n            <div class=\"actions\" >    \n             <button (click)=\"generateMinionBoard()\">fill board</button>\n            amount:<input [(ngModel)]=\"amount\" maxLength=\"1\" /><br/>\n            mana:<input [(ngModel)]=\"mana\"  maxLength=\"1\" /><br/>\n           \n            </div>\n        </li>\n        </ul>   \n  ",
     }),
     __metadata("design:paramtypes", [card_service_1.CardService])
 ], PlayerBoardComponent);

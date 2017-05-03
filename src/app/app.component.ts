@@ -30,23 +30,32 @@ export class AppComponent implements OnInit {
 
   //interface
   ngOnInit(): void {
-    this.cardService.getCards().then(cards => {
-      this.allCards = cards;
+    
+    console.log("AppComponnent init");
+    this.cardService.initialize().then(cards=>{
+        this.allCards = cards;
+        this.playerHandCards = cards.slice(9, 19);
+    })
 
-      this.playerHandCards = cards.slice(9, 19);
+      //this.allCards = this.;
+
+      //this.playerHandCards = cards.slice(9, 19);
 
       
-    });
+    
 
     //console.log(this.heroes);
   }
 
   //events
+  //card-search 
   onCardSelected(card: Card) {
     if (this.playerHandCards.length < this.maxCardsPlayerHand)
       this.playerHandCards[this.playerHandCards.length] = card;
   }
 
+
+  //player-hand 
   onCardPlayed(card:Card){
 
       console.log("card played",card);
@@ -58,8 +67,6 @@ export class AppComponent implements OnInit {
       //random, enemies (minions and hero), arcane missiles
 
       //ragnaros
-
-
   }
 
 }

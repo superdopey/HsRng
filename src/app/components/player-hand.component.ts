@@ -31,8 +31,7 @@ export class PlayerHandComponent implements ICardContainer {
     @Input() cards: Card[];
     @Output() onCardPlayed = new EventEmitter<Card>();
   
-    selectedCard:Card;
-    
+    selectedCard:Card;   
 
     removeCard(card:Card)    {         
 

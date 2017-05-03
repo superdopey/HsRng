@@ -1,6 +1,6 @@
 <div class='container'>
     <div class="left-side">
-        <card-search (onCardSelected)="onCardSelected($event)" [cards]="allCards"></card-search>
+        <card-search (onCardSelected)="onCardSelected($event)"></card-search>
     </div>
     <div class="right-side">
         <player-board [cards]="enemyPlayerBoardCards" [isEnemy]="true" ></player-board>

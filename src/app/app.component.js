@@ -24,17 +24,22 @@ var AppComponent = (function () {
     //interface
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.cardService.getCards().then(function (cards) {
+        console.log("AppComponnent init");
+        this.cardService.initialize().then(function (cards) {
             _this.allCards = cards;
             _this.playerHandCards = cards.slice(9, 19);
         });
+        //this.allCards = this.;
+        //this.playerHandCards = cards.slice(9, 19);
         //console.log(this.heroes);
     };
     //events
+    //card-search 
     AppComponent.prototype.onCardSelected = function (card) {
         if (this.playerHandCards.length < this.maxCardsPlayerHand)
             this.playerHandCards[this.playerHandCards.length] = card;
     };
+    //player-hand 
     AppComponent.prototype.onCardPlayed = function (card) {
         console.log("card played", card);
         //full player board, eveolve

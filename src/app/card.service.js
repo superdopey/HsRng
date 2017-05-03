@@ -18,32 +18,75 @@ var CardService = (function () {
     function CardService(http) {
         this.http = http;
         this.cardsUrl = 'api/cards.collectible.json'; // URL to web API
+        this.InvalidTypes = [card_1.CardType.HERO, card_1.CardType.HERO_POWER];
+        this.StandardSets = [
+            card_1.CardSet.CORE, card_1.CardSet.EXPERT1, card_1.CardSet.OG,
+            card_1.CardSet.KARA, card_1.CardSet.GANGS, card_1.CardSet.UNGORO
+        ];
+        this.WildSets = [card_1.CardSet.CORE, card_1.CardSet.EXPERT1,
+            card_1.CardSet.BRM, card_1.CardSet.TGT, card_1.CardSet.LOE, card_1.CardSet.OG,
+            card_1.CardSet.KARA, card_1.CardSet.GANGS, card_1.CardSet.NAXX, card_1.CardSet.GVG, card_1.CardSet.UNGORO];
     }
+    CardService.prototype.initialize = function () {
+        var _this = this;
+        console.log("CardService.initialize");
+        var p = new Promise(function (resolve, reject) {
+            _this.getCards().then(function (cards) {
+                _this.allCards = cards;
+                resolve(cards);
+                console.log("CardService.getcards complete");
+            });
+        });
+        return p;
+    };
     CardService.prototype.getCards = function () {
         return this.http.get(this.cardsUrl)
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);
     };
-    CardService.prototype.filterCards = function (amount, mana) {
-        if (this.allCards == null) {
-        }
-        return null;
-        /*
-
-        return this.cards.filter((card: Card) => {
+    CardService.prototype.searchCards = function (search) {
+        var _this = this;
+        return this.allCards.filter(function (card) {
             //console.log(this.StandardSets[0],card.Set);
-            if (card != null && this.search != null
+            if (card != null && search != null
                 && card.Name != undefined
                 && card.Set != undefined
-                && this.StandardSets.indexOf(CardSet[card.Set.toString()]) > -1
-                && this.InvalidTypes.indexOf(CardType[card.Type.toString()]) == -1
-            ) {
+                && _this.StandardSets.indexOf(card_1.CardSet[card.Set.toString()]) > -1
+                && _this.InvalidTypes.indexOf(card_1.CardType[card.Type.toString()]) == -1) {
                 return card.Name.toLowerCase().indexOf(search.toLowerCase()) > -1;
             }
             return false;
         });
-        */
+    };
+    CardService.prototype.minionCardsBy = function (mana, health) {
+        var _this = this;
+        return this.allCards.filter(function (card) {
+            //console.log(this.StandardSets[0],card.Set);
+            if (card != null && mana != null
+                && card.Name != undefined
+                && card.Set != undefined
+                && _this.StandardSets.indexOf(card_1.CardSet[card.Set.toString()]) > -1
+                && _this.InvalidTypes.indexOf(card_1.CardType[card.Type.toString()]) == -1) {
+                //console.log(card.Type ,CardType.MINION.toString());
+                return card.Cost == mana && card.Type.toString() == card_1.CardType[card_1.CardType.MINION.toString()];
+            }
+            return false;
+        });
+    };
+    CardService.prototype.generateMinionBoard = function (amount, mana) {
+        if (this.allCards != null) {
+            //console.log(this.allCards.length);
+            var cards = this.minionCardsBy(mana);
+            var result = [];
+            for (var i = 0; i < amount; i++) {
+                var cards_1 = this.minionCardsBy(mana);
+                console.log(cards_1.length);
+                result[result.length] = cards_1[Math.floor(Math.random() * cards_1.length)];
+            }
+            return result;
+        }
+        return null;
     };
     CardService.prototype.extractData = function (res) {
         var body = res.json();

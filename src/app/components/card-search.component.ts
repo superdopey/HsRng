@@ -1,12 +1,13 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Card, CardSet, CardType } from '../models/card'
+import { CardService } from '../card.service';
 
 //import { Card, CardSet} from '../models/card'
 
 @Component({
     selector: 'card-search',
     template: `    
-      <div *ngIf="cards" class="card-search">        
+      <div class="card-search">        
         <input [(ngModel)]="search" (keyup)="onKey($event)"  placeholder="search"/> 
         <div class="suggestions">       
         <ul *ngIf="suggestions" >
@@ -17,50 +18,31 @@ import { Card, CardSet, CardType } from '../models/card'
         </ul>
         </div>      
       </div>
-    
   `
 })
 export class CardSearchComponent {
 
-
-    @Input() cards: Card[];
     @Output() onCardSelected = new EventEmitter<Card>();
     search: string;
     previousSearch: string;
 
     suggestions: Card[];
     selectedIndex: number = -1;
-
     highlightedCardName: string;
 
-    InvalidTypes: CardType[] = [CardType.HERO, CardType.HERO_POWER];
+   constructor(private cardService: CardService) { }
 
-    StandardSets: CardSet[] = [
-        CardSet.CORE, CardSet.EXPERT1, CardSet.OG,
-        CardSet.KARA, CardSet.GANGS, CardSet.UNGORO];
-
-    WildSets: CardSet[] = [CardSet.CORE, CardSet.EXPERT1,
-    CardSet.BRM, CardSet.TGT, CardSet.LOE, CardSet.OG,
-    CardSet.KARA, CardSet.GANGS, CardSet.NAXX, CardSet.GVG, CardSet.UNGORO];
     // selectedCard: Card;
 
     selectCard(card: Card) {
         this.onCardSelected.emit(card);
-
-        // this.highlightedCardName = null;
-        //this.search = "";
-        // this.suggestions = [];
-        //  this.selectedCard = card;
     }
-
-
 
     onKey(e: any) { // without type info
 
         if (this.search != "") {
             if (this.previousSearch != this.search) this.selectedIndex = -1;
-            this.suggestions = this.filterCards(this.search);
-
+            this.suggestions = this.cardService.searchCards(this.search);
 
             //arrow-down(40)  up(38)
             if (e.keyCode == 40) {
@@ -96,6 +78,7 @@ export class CardSearchComponent {
         }
     }
 
+/*
     filterCards(search: string): Card[] {
         return this.cards.filter((card: Card) => {
             //console.log(this.StandardSets[0],card.Set);
@@ -110,4 +93,5 @@ export class CardSearchComponent {
             return false;
         });
     }
+    */
 }
