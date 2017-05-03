@@ -14,6 +14,11 @@ var PlayerBoardComponent = (function () {
     function PlayerBoardComponent(cardService) {
         this.cardService = cardService;
     }
+    PlayerBoardComponent.prototype.ngOnInit = function () {
+        this.cardService.getCards().then(function (cards) {
+            console.log("init");
+        });
+    };
     //@Output() onCardPlayed = new EventEmitter<Card>();
     PlayerBoardComponent.prototype.removeCard = function (card) {
         var index = this.cards.indexOf(card);

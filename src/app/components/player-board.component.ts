@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import { Card } from '../models/card'
 import { ICardContainer } from '../models/icard-container'
 import { CardService } from '../card.service';
@@ -23,7 +23,15 @@ import { CardService } from '../card.service';
    //providers: [CardService]
 })
 
-export class PlayerBoardComponent implements ICardContainer {  
+export class PlayerBoardComponent implements ICardContainer, OnInit {
+        
+        ngOnInit(): void {
+            this.cardService.getCards().then(cards => {
+      
+                console.log("init");
+             });
+        }
+
  constructor(private cardService: CardService) { }
 
    //,'margin-left': card|  marginStylePipe:cards.length:i 
