@@ -11,10 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var card_service_1 = require("../card.service");
 var PlayerBoardComponent = (function () {
+    /*
+       <div class="actions" >
+                 <button (click)="generateMinionBoard()">fill board</button>
+                amount:<input [(ngModel)]="amount" maxLength="1" /><br/>
+                mana:<input [(ngModel)]="mana"  maxLength="1" /><br/>
+                </div>
+     */
     function PlayerBoardComponent(cardService) {
         this.cardService = cardService;
     }
-    //@Output() onCardPlayed = new EventEmitter<Card>();
     PlayerBoardComponent.prototype.removeCard = function (card) {
         var index = this.cards.indexOf(card);
         if (index > -1) {
@@ -37,7 +43,7 @@ __decorate([
 PlayerBoardComponent = __decorate([
     core_1.Component({
         selector: 'player-board',
-        template: "      \n        <ul *ngIf=\"cards\" class=\"player-board-container\" [class.enemy]=\"isEnemy === true\">\n        <li *ngFor=\"let card of cards\" (dblclick)=\"removeCard(card)\" >      \n            <img src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        <li *ngIf=\"cards.length < 7\">        \n            <div class=\"actions\" >    \n             <button (click)=\"generateMinionBoard()\">fill board</button>\n            amount:<input [(ngModel)]=\"amount\" maxLength=\"1\" /><br/>\n            mana:<input [(ngModel)]=\"mana\"  maxLength=\"1\" /><br/>\n           \n            </div>\n        </li>\n        </ul>   \n  ",
+        template: "      \n    <div class=\"player-board-container\" [class.enemy]=\"isEnemy === true\">\n        <ul *ngIf=\"cards\" >\n        <li *ngFor=\"let card of cards\" (dblclick)=\"removeCard(card)\" >      \n            <img src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        <li *ngIf=\"cards.length < 7\" class=\"action-li\">        \n                    \n        </li>\n        </ul>   \n        <div class=\"actions\" >    \n             <button (click)=\"generateMinionBoard()\">fill board</button>\n            amount:<input [(ngModel)]=\"amount\" maxLength=\"1\" /><br/>\n            mana:<input [(ngModel)]=\"mana\"  maxLength=\"1\" /><br/>           \n            </div>   \n\n        </div>\n  ",
     }),
     __metadata("design:paramtypes", [card_service_1.CardService])
 ], PlayerBoardComponent);
