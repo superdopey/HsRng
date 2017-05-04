@@ -27,12 +27,6 @@ var CardService = (function () {
             card_1.CardSet.BRM, card_1.CardSet.TGT, card_1.CardSet.LOE, card_1.CardSet.OG,
             card_1.CardSet.KARA, card_1.CardSet.GANGS, card_1.CardSet.NAXX, card_1.CardSet.GVG, card_1.CardSet.UNGORO];
     }
-    CardService.prototype.ngOnInit = function () {
-        var _this = this;
-        this.getCards().then(function (cards) {
-            _this.allCards = cards;
-        });
-    };
     CardService.prototype.initialize = function () {
         var _this = this;
         console.log("CardService.initialize");
@@ -102,6 +96,7 @@ var CardService = (function () {
             var card = new card_1.Card(e.id, e.name, e.text, e.flavor, e.artist, e.attack, e.health, e.cost, e.rarity, e.cardClass, e.collectible, e.elite, e.faction, e.mechanics, e.set, e.type);
             result[result.length] = card;
         }
+        //console.log(result)
         return result;
     };
     CardService.prototype.handleError = function (error) {

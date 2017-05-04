@@ -19,29 +19,14 @@ import { CardService } from '../card.service';
             </div>
         </li>
         </ul>   
-  `,
-   //providers: [CardService]
+  `,   
 })
 
-export class PlayerBoardComponent implements ICardContainer, OnInit {
+export class PlayerBoardComponent implements ICardContainer {
         
-        ngOnInit(): void {
-            this.cardService.getCards().then(cards => {
-      
-                console.log("init");
-             });
-        }
-
  constructor(private cardService: CardService) { }
 
-   //,'margin-left': card|  marginStylePipe:cards.length:i 
-/*
-   right-click menu:
-        - fire deathrattle     (dteal rand card,)
-*/
-
-    @Input() cards: Card[];
-    
+    @Input() cards: Card[];    
     @Input() isEnemy: boolean;
 
     amount:number;

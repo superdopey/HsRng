@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -12,20 +12,13 @@ import { Card, CardSet, CardType } from './models/card'
 
 
 @Injectable()
-export class CardService implements OnInit {
-    ngOnInit(): void {
-       this.getCards().then(cards => {
-      this.allCards = cards;
-    }); 
-    }
-
+export class CardService  {
 
   private cardsUrl = 'api/cards.collectible.json';  // URL to web API
   public allCards: Card[];
 
   InvalidTypes: CardType[] = [CardType.HERO, CardType.HERO_POWER];
 
-<<<<<<< HEAD
   StandardSets: CardSet[] = [
     CardSet.CORE, CardSet.EXPERT1, CardSet.OG,
     CardSet.KARA, CardSet.GANGS, CardSet.UNGORO];
@@ -97,23 +90,6 @@ export class CardService implements OnInit {
       let cards: Card[] = this.minionCardsBy(mana);
       let result: Card[] = [];
 
-=======
-getCards (): Promise<Card[]> {
-
-console.log(this.allCards, "get cards");
-  
-    return this.http.get(this.cardsUrl)
-                    .toPromise()
-                    .then(this.extractData)
-                    .catch(this.handleError);
-}
-
- filterCards(amount:number, mana:number): Card[] {
-      if(this.allCards ==null)
-      {
- 
->>>>>>> 3d75bfe5e34bad4cf36ffa1862c588973d988cca
-
       for (let i = 0; i < amount; i++) {
         let cards: Card[] = this.minionCardsBy(mana);
         console.log(cards.length)
@@ -135,10 +111,6 @@ console.log(this.allCards, "get cards");
       let card = new Card(e.id, e.name, e.text, e.flavor, e.artist, e.attack, e.health, e.cost, e.rarity, e.cardClass, e.collectible, e.elite, e.faction, e.mechanics, e.set, e.type);
       result[result.length] = card;
     }
-
-<<<<<<< HEAD
-
-
     //console.log(result)
     return result;
   }
@@ -154,30 +126,6 @@ console.log(this.allCards, "get cards");
     }
     console.error(errMsg);
     return Promise.reject(errMsg);
-=======
-private extractData(res: Response):Card[] {
-  let body = res.json();
-  let result:Card[] = [];
 
-  for (let e of body) {
-    let card = new Card(e.id,e.name,e.text,e.flavor,e.artist,e.attack,e.health,e.cost,e.rarity,e.cardClass,e.collectible,e.elite,e.faction,e.mechanics,e.set,e.type);
-    result[result.length] = card;
-}
- 
-  //this.allCards = result;
- 
-//console.log(result)
-  return result;
-}
-private handleError (error: Response | any) {
-  // In a real world app, we might use a remote logging infrastructure
-  let errMsg: string;
-  if (error instanceof Response) {
-    const body = error.json() || '';
-    const err = body.error || JSON.stringify(body);
-    errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-  } else {
-    errMsg = error.message ? error.message : error.toString();
->>>>>>> 3d75bfe5e34bad4cf36ffa1862c588973d988cca
   }
 }
