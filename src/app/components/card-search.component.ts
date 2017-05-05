@@ -1,13 +1,15 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output,OnDestroy  } from '@angular/core';
 import { Card, CardSet, CardType } from '../models/card'
 import { CardService } from '../card.service';
+import { InteractionService, TargetCards } from '../interaction.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 //import { Card, CardSet} from '../models/card'
 
 @Component({
     selector: 'card-search',
     template: `    
-      <div class="card-search">        
+      <div class="card-search" [class.show]="show" >        
         <input [(ngModel)]="search" (keyup)="onKey($event)"  placeholder="search"/> 
         <div class="suggestions">       
         <ul *ngIf="suggestions" >
@@ -20,7 +22,7 @@ import { CardService } from '../card.service';
       </div>
   `
 })
-export class CardSearchComponent {
+export class CardSearchComponent implements OnDestroy  {
 
     @Output() onCardSelected = new EventEmitter<Card>();
     search: string;
@@ -29,8 +31,23 @@ export class CardSearchComponent {
     suggestions: Card[];
     selectedIndex: number = -1;
     highlightedCardName: string;
+    
+    showCardSearchSubscription: Subscription;
+    show:boolean;
 
-   constructor(private cardService: CardService) { }
+   constructor(private cardService: CardService,private interactionService: InteractionService) {
+
+  this.showCardSearchSubscription = interactionService.showCardSearch$.subscribe(
+      targetCards => {
+        console.log("card-search.component", targetCards);
+        this.show = true;
+    });
+}
+
+ ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.showCardSearchSubscription.unsubscribe();
+  }
 
     // selectedCard: Card;
 

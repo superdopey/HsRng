@@ -2,6 +2,7 @@ import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import { Card } from '../models/card'
 import { ICardContainer } from '../models/icard-container'
 import { CardService } from '../card.service';
+import { InteractionService, TargetCards } from '../interaction.service';
 
 @Component({
     selector: 'player-board',
@@ -15,12 +16,9 @@ import { CardService } from '../card.service';
                     
         </li>
         </ul>   
-        <div class="actions" >    
-             <button (click)="generateMinionBoard()">fill board</button>
-            amount:<input [(ngModel)]="amount" maxLength="1" /><br/>
-            mana:<input [(ngModel)]="mana"  maxLength="1" /><br/>           
-            </div>   
-
+        <div class="actions-buttons" >    
+             <button class="btn icon-btn brown"><i class="fa fa-times"></i></button>
+             <icon-button (click)="showCardSearch()" [icon]="'fa-plus'"></icon-button>
         </div>
   `,   
 })
@@ -35,7 +33,7 @@ export class PlayerBoardComponent implements ICardContainer {
  */
 
 
- constructor(private cardService: CardService) { }
+ constructor(private cardService: CardService,private interactionService: InteractionService) { }
 
     @Input() cards: Card[];    
     @Input() isEnemy: boolean;
@@ -43,12 +41,23 @@ export class PlayerBoardComponent implements ICardContainer {
     amount:number;
     mana:number;
       
-  removeCard(card:Card)    {
+    removeCard(card:Card)    {
             var index = this.cards.indexOf(card);
             if (index > -1) {
                 this.cards.splice(index, 1);
             }
     }
+
+    showCardSearch(){
+            //enemy-cards
+            //player-cards
+            //hand-cards
+            this.interactionService.showCardSearch(TargetCards.Enemy);//TODO
+            console.log("kliek");
+
+    }
+
+
 
     generateMinionBoard(){        
         this.cards =  this.cardService.generateMinionBoard(this.amount,this.mana);

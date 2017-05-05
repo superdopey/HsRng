@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var card_service_1 = require("./card.service");
+var interaction_service_1 = require("./interaction.service");
 var AppComponent = (function () {
     //constructor
-    function AppComponent(cardService) {
+    function AppComponent(cardService, interactionService) {
         this.cardService = cardService;
+        this.interactionService = interactionService;
         this.playerHandCards = [];
         this.playerBoardCards = [];
         this.enemyPlayerBoardCards = [];
@@ -53,9 +55,9 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         templateUrl: './app.component.html',
-        providers: [card_service_1.CardService]
+        providers: [card_service_1.CardService, interaction_service_1.InteractionService]
     }),
-    __metadata("design:paramtypes", [card_service_1.CardService])
+    __metadata("design:paramtypes", [card_service_1.CardService, interaction_service_1.InteractionService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

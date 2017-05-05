@@ -31,13 +31,13 @@ export class CardService  {
   }
 
   initialize(): Promise<Card[]> {
-    console.log("CardService.initialize");
+    //console.log("CardService.initialize");
 
     var p = new Promise<Card[]>((resolve, reject) => {
       this.getCards().then(cards => {
         this.allCards = cards;
         resolve(cards);
-        console.log("CardService.getcards complete");
+      //  console.log("CardService.getcards complete");
       });
     });
 

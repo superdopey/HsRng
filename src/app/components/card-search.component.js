@@ -10,13 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var card_service_1 = require("../card.service");
+var interaction_service_1 = require("../interaction.service");
 //import { Card, CardSet} from '../models/card'
 var CardSearchComponent = (function () {
-    function CardSearchComponent(cardService) {
+    function CardSearchComponent(cardService, interactionService) {
+        var _this = this;
         this.cardService = cardService;
+        this.interactionService = interactionService;
         this.onCardSelected = new core_1.EventEmitter();
         this.selectedIndex = -1;
+        this.showCardSearchSubscription = interactionService.showCardSearch$.subscribe(function (targetCards) {
+            console.log("card-search.component", targetCards);
+            _this.show = true;
+        });
     }
+    CardSearchComponent.prototype.ngOnDestroy = function () {
+        // prevent memory leak when component destroyed
+        this.showCardSearchSubscription.unsubscribe();
+    };
     // selectedCard: Card;
     CardSearchComponent.prototype.selectCard = function (card) {
         this.onCardSelected.emit(card);
@@ -73,9 +84,9 @@ __decorate([
 CardSearchComponent = __decorate([
     core_1.Component({
         selector: 'card-search',
-        template: "    \n      <div class=\"card-search\">        \n        <input [(ngModel)]=\"search\" (keyup)=\"onKey($event)\"  placeholder=\"search\"/> \n        <div class=\"suggestions\">       \n        <ul *ngIf=\"suggestions\" >\n        <li *ngFor=\"let card of suggestions\" (click)=\"selectCard(card)\" [class.highlighted]=\"card.Name === highlightedCardName\"  >\n            <span>{{card.Name}}</span>\n             <img  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" alt=\"{ card.Name }\">                         \n        </li>\n        </ul>\n        </div>      \n      </div>\n  "
+        template: "    \n      <div class=\"card-search\" [class.show]=\"show\" >        \n        <input [(ngModel)]=\"search\" (keyup)=\"onKey($event)\"  placeholder=\"search\"/> \n        <div class=\"suggestions\">       \n        <ul *ngIf=\"suggestions\" >\n        <li *ngFor=\"let card of suggestions\" (click)=\"selectCard(card)\" [class.highlighted]=\"card.Name === highlightedCardName\"  >\n            <span>{{card.Name}}</span>\n             <img  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" alt=\"{ card.Name }\">                         \n        </li>\n        </ul>\n        </div>      \n      </div>\n  "
     }),
-    __metadata("design:paramtypes", [card_service_1.CardService])
+    __metadata("design:paramtypes", [card_service_1.CardService, interaction_service_1.InteractionService])
 ], CardSearchComponent);
 exports.CardSearchComponent = CardSearchComponent;
 //# sourceMappingURL=card-search.component.js.map

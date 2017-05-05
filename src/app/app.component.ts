@@ -2,11 +2,12 @@ import { Component ,OnInit } from '@angular/core';
 
 import { Card } from './models/card';
 import { CardService } from './card.service';
+import { InteractionService, TargetCards } from './interaction.service';
 
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
-  providers: [CardService]
+  providers: [CardService,InteractionService]
 })
 
 
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
   title = 'My Cards';
 
   //constructor
-  constructor(private cardService: CardService) { }
+  constructor(private cardService: CardService, private interactionService: InteractionService) { }
 
   //interface
   ngOnInit(): void {

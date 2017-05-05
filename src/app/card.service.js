@@ -28,13 +28,13 @@ var CardService = (function () {
             card_1.CardSet.KARA, card_1.CardSet.GANGS, card_1.CardSet.NAXX, card_1.CardSet.GVG, card_1.CardSet.UNGORO];
     }
     CardService.prototype.initialize = function () {
+        //console.log("CardService.initialize");
         var _this = this;
-        console.log("CardService.initialize");
         var p = new Promise(function (resolve, reject) {
             _this.getCards().then(function (cards) {
                 _this.allCards = cards;
                 resolve(cards);
-                console.log("CardService.getcards complete");
+                //  console.log("CardService.getcards complete");
             });
         });
         return p;
