@@ -51,14 +51,15 @@ export class CardService  {
       .catch(this.handleError);
   }
 
-  searchCards(search: string): Card[] {
+  searchCards(search: string,cardTypes:CardType[]): Card[] {
     return this.allCards.filter((card: Card) => {
       //console.log(this.StandardSets[0],card.Set);
       if (card != null && search != null
         && card.Name != undefined
         && card.Set != undefined
         && this.StandardSets.indexOf(CardSet[card.Set.toString()]) > -1
-        && this.InvalidTypes.indexOf(CardType[card.Type.toString()]) == -1
+       // && this.InvalidTypes.indexOf(CardType[card.Type.toString()]) == -1
+           && cardTypes.indexOf(CardType[card.Type.toString()]) > -1
       ) {
         return card.Name.toLowerCase().indexOf(search.toLowerCase()) > -1;
       }

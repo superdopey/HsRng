@@ -9,14 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var animations_1 = require("@angular/animations");
 var IconButtonComponent = (function () {
     function IconButtonComponent() {
         this.state = 'active';
+        this.color = 'brown';
     }
-    IconButtonComponent.prototype.toggleState = function () {
-        this.state = (this.state === 'active' ? 'inactive' : 'active');
-    };
     return IconButtonComponent;
 }());
 __decorate([
@@ -26,21 +23,8 @@ __decorate([
 IconButtonComponent = __decorate([
     core_1.Component({
         selector: 'icon-button',
-        template: "<button   [@heroState]=\"state\" (click)=\"toggleState()\"  class=\"btn icon-btn brown\"><i class=\"fa {{icon}}\"></i></button>",
-        animations: [
-            animations_1.trigger('heroState', [
-                animations_1.state('inactive', animations_1.style({
-                    backgroundColor: '#eee',
-                    transform: 'scale(1)'
-                })),
-                animations_1.state('active', animations_1.style({
-                    backgroundColor: '#cfd8dc',
-                    transform: 'scale(1.1)'
-                })),
-                animations_1.transition('inactive => active', animations_1.animate('100ms ease-in')),
-                animations_1.transition('active => inactive', animations_1.animate('100ms ease-out'))
-            ])
-        ]
+        // template: `<button [@heroState]="state" (click)="toggleState()"  class="btn icon-btn {{color}}"><i class="fa {{icon}}"></i></button>`,
+        template: "<button  class=\"btn icon-btn {{color}}\"><i class=\"fa {{icon}}\"></i></button>",
     }),
     __metadata("design:paramtypes", [])
 ], IconButtonComponent);

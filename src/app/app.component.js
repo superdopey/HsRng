@@ -14,32 +14,71 @@ var interaction_service_1 = require("./interaction.service");
 var AppComponent = (function () {
     //constructor
     function AppComponent(cardService, interactionService) {
+        var _this = this;
         this.cardService = cardService;
         this.interactionService = interactionService;
+        //fields
+        //allCards: Card[];
         this.playerHandCards = [];
         this.playerBoardCards = [];
         this.enemyPlayerBoardCards = [];
+        this.maxCardsBoard = 7;
         this.maxCardsPlayerHand = 10;
         this.title = 'My Cards';
+        this.showCardSearchSubscription = interactionService.showCardSearch$.subscribe(function (cardSearchSetup) {
+            _this.targetCards = cardSearchSetup.targetCards;
+        });
     }
-    ;
     //interface
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log("AppComponnent init");
         this.cardService.initialize().then(function (cards) {
-            _this.allCards = cards;
+            //this.allCards = cards;
             _this.playerHandCards = cards.slice(9, 19);
         });
-        //this.allCards = this.;
-        //this.playerHandCards = cards.slice(9, 19);
-        //console.log(this.heroes);
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        // prevent memory leak when component destroyed
+        this.showCardSearchSubscription.unsubscribe();
+    };
+    AppComponent.prototype.onClearBoard = function (targetCards) {
+        switch (targetCards) {
+            case 0:
+                //enemy              
+                this.enemyPlayerBoardCards = [];
+                break;
+            case 1:
+                //player
+                this.playerBoardCards = [];
+                break;
+            case 2:
+                //hand       
+                this.playerHandCards = [];
+                break;
+        }
     };
     //events
     //card-search 
     AppComponent.prototype.onCardSelected = function (card) {
-        if (this.playerHandCards.length < this.maxCardsPlayerHand)
-            this.playerHandCards[this.playerHandCards.length] = card;
+        switch (this.targetCards) {
+            case 0:
+                //enemy      
+                if (this.enemyPlayerBoardCards.length < this.maxCardsBoard)
+                    this.enemyPlayerBoardCards[this.enemyPlayerBoardCards.length] = card;
+                console.log(this.enemyPlayerBoardCards);
+                break;
+            case 1:
+                //player
+                if (this.playerBoardCards.length < this.maxCardsBoard)
+                    this.playerBoardCards[this.playerBoardCards.length] = card;
+                break;
+            case 2:
+                //hand       
+                if (this.playerHandCards.length < this.maxCardsPlayerHand)
+                    this.playerHandCards[this.playerHandCards.length] = card;
+                break;
+        }
     };
     //player-hand 
     AppComponent.prototype.onCardPlayed = function (card) {

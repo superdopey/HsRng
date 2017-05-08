@@ -212,11 +212,28 @@ li,ul{
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+/*
+    transition-duration: 0.3s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+  */
+   transition: 100ms ease-in-out;
+}
+
+.btn:active{
+  transform: translateY(4px);
 }
 
 .icon-btn{   
    border-radius: 20px;
 }
+
+.icon-btn .fa{
+  line-height: 20px;
+  width:15px;
+}
+
+
 
 .btn.brown{
   background-color:#78280C;

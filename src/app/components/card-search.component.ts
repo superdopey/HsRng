@@ -3,6 +3,9 @@ import { Card, CardSet, CardType } from '../models/card'
 import { CardService } from '../card.service';
 import { InteractionService, TargetCards } from '../interaction.service';
 import { Subscription }   from 'rxjs/Subscription';
+//import * as sd from '../../../node_modules/perfect-scrollbar';
+import * as Ps from 'perfect-scrollbar';
+//import 'perfect-scrollbar' as ps from 'perfect-scrollbar';
 
 //import { Card, CardSet} from '../models/card'
 
@@ -30,18 +33,23 @@ export class CardSearchComponent implements OnDestroy  {
 
     suggestions: Card[];
     selectedIndex: number = -1;
-    highlightedCardName: string;
+    highlightedCardName: string;    
     
     showCardSearchSubscription: Subscription;
     show:boolean;
+    cardTypes:CardType[];
 
    constructor(private cardService: CardService,private interactionService: InteractionService) {
 
   this.showCardSearchSubscription = interactionService.showCardSearch$.subscribe(
-      targetCards => {
-        console.log("card-search.component", targetCards);
-        this.show = true;
+       cardSearchSetup => {
+         console.log("card-search.component", cardSearchSetup.targetCards);
+         this.cardTypes = cardSearchSetup.cardTypes;
+        this.show = true;   
+        //this.targetCards = cardSearchSetup.targetCards; 
     });
+
+     
 }
 
  ngOnDestroy() {
@@ -59,7 +67,7 @@ export class CardSearchComponent implements OnDestroy  {
 
         if (this.search != "") {
             if (this.previousSearch != this.search) this.selectedIndex = -1;
-            this.suggestions = this.cardService.searchCards(this.search);
+            this.suggestions = this.cardService.searchCards(this.search,this.cardTypes);
 
             //arrow-down(40)  up(38)
             if (e.keyCode == 40) {

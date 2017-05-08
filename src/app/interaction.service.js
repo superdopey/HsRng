@@ -15,8 +15,8 @@ var InteractionService = (function () {
         this.showCardSearchSource = new Subject_1.Subject();
         this.showCardSearch$ = this.showCardSearchSource.asObservable();
     }
-    InteractionService.prototype.showCardSearch = function (targetCards) {
-        this.showCardSearchSource.next(targetCards);
+    InteractionService.prototype.showCardSearch = function (cardSearchSetup) {
+        this.showCardSearchSource.next(cardSearchSetup);
     };
     return InteractionService;
 }());
@@ -25,6 +25,14 @@ InteractionService = __decorate([
     __metadata("design:paramtypes", [])
 ], InteractionService);
 exports.InteractionService = InteractionService;
+var CardSearchSetup = (function () {
+    function CardSearchSetup(targetCards, cardTypes) {
+        this.targetCards = targetCards;
+        this.cardTypes = cardTypes;
+    }
+    return CardSearchSetup;
+}());
+exports.CardSearchSetup = CardSearchSetup;
 var TargetCards;
 (function (TargetCards) {
     TargetCards[TargetCards["Enemy"] = 0] = "Enemy";

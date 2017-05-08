@@ -45,7 +45,7 @@ var CardService = (function () {
             .then(this.extractData)
             .catch(this.handleError);
     };
-    CardService.prototype.searchCards = function (search) {
+    CardService.prototype.searchCards = function (search, cardTypes) {
         var _this = this;
         return this.allCards.filter(function (card) {
             //console.log(this.StandardSets[0],card.Set);
@@ -53,7 +53,7 @@ var CardService = (function () {
                 && card.Name != undefined
                 && card.Set != undefined
                 && _this.StandardSets.indexOf(card_1.CardSet[card.Set.toString()]) > -1
-                && _this.InvalidTypes.indexOf(card_1.CardType[card.Type.toString()]) == -1) {
+                && cardTypes.indexOf(card_1.CardType[card.Type.toString()]) > -1) {
                 return card.Name.toLowerCase().indexOf(search.toLowerCase()) > -1;
             }
             return false;

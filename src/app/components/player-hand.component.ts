@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Card } from '../models/card'
 import { ICardContainer } from '../models/icard-container'
+import { InteractionService, TargetCards } from '../interaction.service';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class PlayerHandComponent implements ICardContainer {
 
     @Input() cards: Card[];
     @Output() onCardPlayed = new EventEmitter<Card>();
+     @Input() targetCards : TargetCards;
   
     selectedCard:Card;   
 

@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
-import { Card } from '../models/card'
+import { Card,CardType } from '../models/card'
 import { ICardContainer } from '../models/icard-container'
 import { CardService } from '../card.service';
 import { InteractionService, TargetCards } from '../interaction.service';
@@ -17,7 +17,7 @@ import { InteractionService, TargetCards } from '../interaction.service';
         </li>
         </ul>   
         <div class="actions-buttons" >    
-             <button class="btn icon-btn brown"><i class="fa fa-times"></i></button>
+             <icon-button (click)="clearBoard()" [icon]="'fa-times'"></icon-button>
              <icon-button (click)="showCardSearch()" [icon]="'fa-plus'"></icon-button>
         </div>
   `,   
@@ -37,6 +37,9 @@ export class PlayerBoardComponent implements ICardContainer {
 
     @Input() cards: Card[];    
     @Input() isEnemy: boolean;
+    @Input() targetCards : TargetCards;
+
+     @Output() onClearBoard = new EventEmitter<TargetCards>();
 
     amount:number;
     mana:number;
@@ -48,16 +51,17 @@ export class PlayerBoardComponent implements ICardContainer {
             }
     }
 
-    showCardSearch(){
-            //enemy-cards
-            //player-cards
-            //hand-cards
-            this.interactionService.showCardSearch(TargetCards.Enemy);//TODO
-            console.log("kliek");
+    //uses service, to communicate with app.component and card-search
+    showCardSearch(){            
+        this.interactionService.showCardSearch( { targetCards : this.targetCards, cardTypes:[CardType.MINION]} );      
 
     }
 
+    clearBoard(){
+        //this.cards =[];
+        this.onClearBoard.emit(this.targetCards);
 
+    }
 
     generateMinionBoard(){        
         this.cards =  this.cardService.generateMinionBoard(this.amount,this.mana);
