@@ -16,6 +16,7 @@ import { InteractionService, TargetCards } from '../interaction.service';
         <div class="actions-buttons" >    
              <icon-button (click)="clearBoard()" [icon]="'fa-times'"></icon-button>
              <icon-button (click)="showCardSearch()" [icon]="'fa-plus'"></icon-button>
+             <icon-button (click)="showCardGenerator()" [icon]="'fa-asterisk'"></icon-button>
         </div>
     </div>
   `,   
@@ -53,8 +54,13 @@ export class PlayerBoardComponent implements ICardContainer {
 
     //uses service, to communicate with app.component and card-search
     showCardSearch(){            
-        this.interactionService.showCardSearch( { targetCards : this.targetCards, cardTypes:[CardType.MINION]} );      
+        this.interactionService.showCardSearch( {showElement:true,  targetCards : this.targetCards, cardTypes:[CardType.MINION]} );      
+        this.interactionService.showCardGenerator({showElement:false, targetCards : this.targetCards, cardTypes:[CardType.MINION]} );                      
+    }
 
+    showCardGenerator(){
+            this.interactionService.showCardGenerator({showElement:true, targetCards : this.targetCards, cardTypes:[CardType.MINION]} );                      
+            this.interactionService.showCardSearch( {showElement:false,  targetCards : this.targetCards, cardTypes:[CardType.MINION]} );      
     }
 
     clearBoard(){        

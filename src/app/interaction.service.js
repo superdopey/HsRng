@@ -14,9 +14,14 @@ var InteractionService = (function () {
     function InteractionService() {
         this.showCardSearchSource = new Subject_1.Subject();
         this.showCardSearch$ = this.showCardSearchSource.asObservable();
+        this.showCardGeneratorSource = new Subject_1.Subject();
+        this.showCardGeneratorSource$ = this.showCardGeneratorSource.asObservable();
     }
     InteractionService.prototype.showCardSearch = function (cardSearchSetup) {
         this.showCardSearchSource.next(cardSearchSetup);
+    };
+    InteractionService.prototype.showCardGenerator = function (cardSearchSetup) {
+        this.showCardGeneratorSource.next(cardSearchSetup);
     };
     return InteractionService;
 }());
@@ -26,7 +31,8 @@ InteractionService = __decorate([
 ], InteractionService);
 exports.InteractionService = InteractionService;
 var CardSearchSetup = (function () {
-    function CardSearchSetup(targetCards, cardTypes) {
+    function CardSearchSetup(showElement, targetCards, cardTypes) {
+        this.showElement = showElement;
         this.targetCards = targetCards;
         this.cardTypes = cardTypes;
     }

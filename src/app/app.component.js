@@ -32,11 +32,11 @@ var AppComponent = (function () {
     //interface
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log("AppComponnent init");
         this.cardService.initialize().then(function (cards) {
             //this.allCards = cards;
             _this.playerHandCards = cards.slice(9, 19);
-            _this.playerBoardCards = cards.slice(9, 10);
+            _this.playerBoardCards = _this.cardService.generateMinionBoard(4, 2);
+            _this.enemyPlayerBoardCards = _this.cardService.generateMinionBoard(4, 2);
         });
     };
     AppComponent.prototype.ngOnDestroy = function () {
@@ -44,15 +44,13 @@ var AppComponent = (function () {
         this.showCardSearchSubscription.unsubscribe();
     };
     AppComponent.prototype.onClearBoard = function (targetCards) {
-        console.log("clear  board", targetCards);
         switch (targetCards) {
             case 0:
                 //enemy              
                 this.enemyPlayerBoardCards = [];
                 break;
             case 1:
-                //player
-                console.log("clear player board");
+                //player     
                 this.playerBoardCards = [];
                 break;
             case 2:
@@ -63,13 +61,28 @@ var AppComponent = (function () {
     };
     //events
     //card-search 
+    AppComponent.prototype.onGenerateCards = function (params) {
+        switch (this.targetCards) {
+            case 0:
+                //enemy      
+                this.enemyPlayerBoardCards = this.cardService.generateMinionBoard(params.amount, params.mana);
+                break;
+            case 1:
+                //player
+                this.playerBoardCards = this.cardService.generateMinionBoard(params.amount, params.mana);
+                break;
+            case 2:
+                //hand       
+                this.playerHandCards = this.cardService.generateMinionBoard(params.amount, params.mana);
+                break;
+        }
+    };
     AppComponent.prototype.onCardSelected = function (card) {
         switch (this.targetCards) {
             case 0:
                 //enemy      
                 if (this.enemyPlayerBoardCards.length < this.maxCardsBoard)
                     this.enemyPlayerBoardCards[this.enemyPlayerBoardCards.length] = card;
-                console.log(this.enemyPlayerBoardCards);
                 break;
             case 1:
                 //player

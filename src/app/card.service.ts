@@ -67,7 +67,7 @@ export class CardService  {
     });
   }
 
-  minionCardsBy(mana: number, health?: number): Card[] {
+  private minionCardsBy(mana: number, health?: number): Card[] {
     return this.allCards.filter((card: Card) => {
       //console.log(this.StandardSets[0],card.Set);
       if (card != null && mana != null

@@ -8,15 +8,22 @@ export class InteractionService {
    private showCardSearchSource  = new Subject<CardSearchSetup>();
    showCardSearch$ = this.showCardSearchSource.asObservable();
 
+   private showCardGeneratorSource  = new Subject<CardSearchSetup>();
+   showCardGeneratorSource$ = this.showCardGeneratorSource.asObservable();
+
     constructor() { }
     
     showCardSearch(cardSearchSetup:CardSearchSetup){
          this.showCardSearchSource.next(cardSearchSetup);    
     }
+
+     showCardGenerator(cardSearchSetup:CardSearchSetup){
+         this.showCardGeneratorSource.next(cardSearchSetup);    
+    }
 }
 
 export class CardSearchSetup{  
-    constructor(public targetCards:TargetCards,public cardTypes:CardType[]) {
+    constructor(public showElement :boolean,public targetCards:TargetCards,public cardTypes:CardType[]) {
         
         
     }

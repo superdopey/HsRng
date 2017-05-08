@@ -42,11 +42,12 @@ export class AppComponent implements OnInit, OnDestroy {
   //interface
   ngOnInit(): void {
 
-    console.log("AppComponnent init");
     this.cardService.initialize().then(cards => {
       //this.allCards = cards;
       this.playerHandCards = cards.slice(9, 19);
-      this.playerBoardCards = cards.slice(9, 10) ;
+
+      this.playerBoardCards = this.cardService.generateMinionBoard(4,2);
+      this.enemyPlayerBoardCards = this.cardService.generateMinionBoard(4,2);
     });
 
   }
@@ -56,48 +57,58 @@ export class AppComponent implements OnInit, OnDestroy {
     this.showCardSearchSubscription.unsubscribe();
   }
 
- onClearBoard(targetCards: TargetCards)
-{
-  console.log("clear  board", targetCards);
-
-switch (targetCards) {
+  onClearBoard(targetCards: TargetCards) {
+    switch (targetCards) {
       case 0:
         //enemy              
-           this.enemyPlayerBoardCards=[];
-
-          
+        this.enemyPlayerBoardCards = [];
         break;
       case 1:
-        //player
-        console.log("clear player board");
-           this.playerBoardCards=[];
+        //player     
+        this.playerBoardCards = [];
         break;
       case 2:
         //hand       
-        
-          this.playerHandCards=[];
+
+        this.playerHandCards = [];
         break;
 
     }
 
-}
+  }
 
   //events
   //card-search 
+  onGenerateCards(params:any){
+    switch (this.targetCards) {
+      case 0:
+        //enemy      
+          this.enemyPlayerBoardCards = this.cardService.generateMinionBoard(params.amount,params.mana);
+        break;
+      case 1:
+        //player
+        this.playerBoardCards = this.cardService.generateMinionBoard(params.amount,params.mana);
+        break;
+      case 2:
+        //hand       
+        this.playerHandCards = this.cardService.generateMinionBoard(params.amount,params.mana);
+        break;
+
+    }
+  }
+
   onCardSelected(card: Card) {
 
     switch (this.targetCards) {
       case 0:
         //enemy      
-         if (this.enemyPlayerBoardCards.length < this.maxCardsBoard)
-           this.enemyPlayerBoardCards[this.enemyPlayerBoardCards.length] = card;
-
-           console.log(this.enemyPlayerBoardCards);
+        if (this.enemyPlayerBoardCards.length < this.maxCardsBoard)
+          this.enemyPlayerBoardCards[this.enemyPlayerBoardCards.length] = card;
         break;
       case 1:
         //player
         if (this.playerBoardCards.length < this.maxCardsBoard)
-           this.playerBoardCards[this.playerBoardCards.length] = card;
+          this.playerBoardCards[this.playerBoardCards.length] = card;
         break;
       case 2:
         //hand       

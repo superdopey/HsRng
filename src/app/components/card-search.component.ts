@@ -45,7 +45,7 @@ export class CardSearchComponent implements OnDestroy  {
        cardSearchSetup => {
          //console.log("card-search.component", cardSearchSetup.targetCards);
          this.cardTypes = cardSearchSetup.cardTypes;
-        this.show = true;   
+        this.show = cardSearchSetup.showElement;   
         //this.targetCards = cardSearchSetup.targetCards; 
     });
 

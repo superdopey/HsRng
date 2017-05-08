@@ -1,6 +1,7 @@
 <div class='container'>
     <div class="left-side">
         <card-search (onCardSelected)="onCardSelected($event)"></card-search>
+        <cards-generator (onGenerateCards)="onGenerateCards($event)"></cards-generator>
     </div>
     <div class="right-side">
         <player-board [cards]="enemyPlayerBoardCards" (onClearBoard)="onClearBoard($event)"  [targetCards]="0" [isEnemy]="true" ></player-board>

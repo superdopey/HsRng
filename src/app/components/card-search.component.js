@@ -25,7 +25,7 @@ var CardSearchComponent = (function () {
         this.showCardSearchSubscription = interactionService.showCardSearch$.subscribe(function (cardSearchSetup) {
             //console.log("card-search.component", cardSearchSetup.targetCards);
             _this.cardTypes = cardSearchSetup.cardTypes;
-            _this.show = true;
+            _this.show = cardSearchSetup.showElement;
             //this.targetCards = cardSearchSetup.targetCards; 
         });
     }

@@ -14,6 +14,7 @@ var MinionComponent = (function () {
     function MinionComponent() {
     }
     MinionComponent.prototype.ngOnInit = function () {
+        //console.log(this.card);
     };
     return MinionComponent;
 }());
@@ -24,7 +25,7 @@ __decorate([
 MinionComponent = __decorate([
     core_1.Component({
         selector: 'minion',
-        template: "\n    <div class=\"entity in-play minion exhausted\" title=\"{{card.Name}}\">\n        <div class=\"visuals\" style=\"\">\n            <img src=\"https://art.hearthstonejson.com/v1/256x/{{card.Id}}.jpg\" class=\"inplay-portrait\" draggable=\"false\">\n            <img src=\"https://s3.amazonaws.com/joust.hearthsim.net/branches/master/assets/images/inplay_minion.png\" class=\"inplay-base\" draggable=\"false\">\n            <!--<img src=\"https://s3.amazonaws.com/joust.hearthsim.net/branches/master/assets/images/effect_sleep.png\"\n                class=\"effect-sleep\" draggable=\"false\"></div>\n        <div class=\"stats\">\n            <div class=\"atk\">1</div>\n            <div class=\"health\">1</div>\n        </div>\n        -->\n    </div>"
+        template: "\n    <div class=\"entity in-play minion exhausted\" title=\"{{card.Name}}\">\n        <div class=\"visuals\" style=\"\">\n            <img src=\"https://art.hearthstonejson.com/v1/256x/{{card.Id}}.jpg\" class=\"inplay-portrait\" draggable=\"false\">\n            <img src=\"https://s3.amazonaws.com/joust.hearthsim.net/branches/master/assets/images/inplay_minion.png\" class=\"inplay-base\" draggable=\"false\">\n            <!--<img src=\"https://s3.amazonaws.com/joust.hearthsim.net/branches/master/assets/images/effect_sleep.png\"\n                class=\"effect-sleep\" draggable=\"false\"></div>-->\n        <div class=\"stats\">\n            <div class=\"atk\">{{ card.Attack}}</div>\n            <div class=\"health\">{{ card.Health}}</div>\n        </div>       \n    </div>"
     }),
     __metadata("design:paramtypes", [])
 ], MinionComponent);

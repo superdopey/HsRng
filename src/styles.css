@@ -112,6 +112,35 @@ textarea, input, button { outline: none; }
   height: 440px;
 }
 
+.cards-generator{
+  width:175px;
+  height: 525px;
+  margin-top:100px;
+  background-image: url('app/img/card-selector.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  transition: 300ms ease-in-out;
+  left:-185px;
+
+  /*
+  position: absolute; 
+  margin-top: 100px;
+
+   background-image: url('app/img/bg-search-box.png');
+  background-size: 100%;
+   
+  background-repeat: no-repeat; 
+  
+  transition: 300ms ease-in-out;
+  */
+}
+
+.cards-generator .form{
+  padding-top:50px;
+  margin-left:25px;
+  margin-right:25px;
+}
 
 .card-search{
   position: absolute; 
@@ -125,7 +154,7 @@ textarea, input, button { outline: none; }
   transition: 300ms ease-in-out;
 }
 
-.card-search.show{
+.card-search.show,.cards-generator.show{
   transform: translate(185px,0);
 }
 
@@ -169,6 +198,7 @@ li,ul{
   height: 216px;
   width:920px;
   text-align: center;
+  z-index: 20;
 }
 
 .tooltip div{
@@ -277,4 +307,47 @@ div.visuals img {
 
 .minion, .minion div.visuals .effect-sleep, .minion div.visuals .icon-deathrattle, .minion div.visuals .icon-inspire, .minion div.visuals .icon-poisonous, .minion div.visuals .icon-trigger, .minion div.visuals .inplay-base, .minion div.visuals .inplay-buffed, .minion div.visuals .inplay-divine-shield, .minion div.visuals .inplay-enraged, .minion div.visuals .inplay-frozen, .minion div.visuals .inplay-immune, .minion div.visuals .inplay-legendary, .minion div.visuals .inplay-shield, .minion div.visuals .inplay-silenced, .minion div.visuals .inplay-stealth, .minion div.visuals .inplay-taunt, .minion div.visuals .inplay-untargetable {
     height: 100%;
+}
+
+.minion div.stats {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/*
+.minion>.stats {
+    font-size: 1.3em;
+    position: absolute;
+    top: 0;
+}
+*/
+
+.minion .stats .atk {
+    left: 19.75%;
+    top: 63.5%;
+    font-size: .9em;
+}
+
+.minion .stats .health {
+    left: 59.75%;
+    top: 63.5%;
+    font-size: .9em;
+}
+
+.armor, .atk, .cost, .damage, .durability, .gameresult, .healing, .health, .secret-text {
+    position: absolute;
+    display: block;
+    width: 20%;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 2px #000;
+    font-size: 1.2em;
+    line-height: .95em;
+    font-family: belwe_fsextrabold,serif;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
