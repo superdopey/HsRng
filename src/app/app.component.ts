@@ -46,6 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.cardService.initialize().then(cards => {
       //this.allCards = cards;
       this.playerHandCards = cards.slice(9, 19);
+      this.playerBoardCards = cards.slice(9, 10) ;
     });
 
   }
@@ -57,6 +58,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
  onClearBoard(targetCards: TargetCards)
 {
+  console.log("clear  board", targetCards);
+
 switch (targetCards) {
       case 0:
         //enemy              
@@ -66,7 +69,7 @@ switch (targetCards) {
         break;
       case 1:
         //player
-       
+        console.log("clear player board");
            this.playerBoardCards=[];
         break;
       case 2:

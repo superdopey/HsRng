@@ -27,6 +27,7 @@
       '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
+      'perfect-scrollbar': 'npm:perfect-scrollbar/dist/js/perfect-scrollbar.js',
 
       // other libraries
       'rxjs':                      'npm:rxjs',

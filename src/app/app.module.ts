@@ -9,6 +9,7 @@ import { CardSearchComponent} from './components/card-search.component'
 import { PlayerHandComponent} from './components/player-hand.component'
 import { PlayerBoardComponent} from './components/player-board.component'
 import { IconButtonComponent } from './components/icon-button.component'
+import { MinionComponent } from './components/minion.component'
 import { RotateStylePipe,MarginStylePipe} from './pipes'
 
 
@@ -21,7 +22,7 @@ import { RotateStylePipe,MarginStylePipe} from './pipes'
     HttpModule,
     JsonpModule    
      ],
-  declarations: [ AppComponent , CardSearchComponent,PlayerHandComponent,PlayerBoardComponent,RotateStylePipe ,MarginStylePipe, IconButtonComponent],
+  declarations: [ AppComponent , CardSearchComponent,PlayerHandComponent,PlayerBoardComponent,MinionComponent,RotateStylePipe ,MarginStylePipe, IconButtonComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

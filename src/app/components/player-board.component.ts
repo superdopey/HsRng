@@ -9,22 +9,22 @@ import { InteractionService, TargetCards } from '../interaction.service';
     template: `      
     <div class="player-board-container" [class.enemy]="isEnemy === true">
         <ul *ngIf="cards" >
-        <li *ngFor="let card of cards" (dblclick)="removeCard(card)" >      
-            <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" title="{{card.Name}}">
-        </li>
-        <li *ngIf="cards.length < 7" class="action-li">        
-                    
-        </li>
+        <li *ngFor="let card of cards" (dblclick)="removeCard(card)" >                  
+            <minion [card]="card"></minion>
+        </li>     
         </ul>   
         <div class="actions-buttons" >    
              <icon-button (click)="clearBoard()" [icon]="'fa-times'"></icon-button>
              <icon-button (click)="showCardSearch()" [icon]="'fa-plus'"></icon-button>
         </div>
+    </div>
   `,   
 })
 
 export class PlayerBoardComponent implements ICardContainer {
 /*
+<minion></minion>
+
    <div class="actions" >    
              <button (click)="generateMinionBoard()">fill board</button>
             amount:<input [(ngModel)]="amount" maxLength="1" /><br/>
@@ -57,10 +57,8 @@ export class PlayerBoardComponent implements ICardContainer {
 
     }
 
-    clearBoard(){
-        //this.cards =[];
+    clearBoard(){        
         this.onClearBoard.emit(this.targetCards);
-
     }
 
     generateMinionBoard(){        

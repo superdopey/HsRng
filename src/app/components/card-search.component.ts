@@ -14,11 +14,11 @@ import * as Ps from 'perfect-scrollbar';
     template: `    
       <div class="card-search" [class.show]="show" >        
         <input [(ngModel)]="search" (keyup)="onKey($event)"  placeholder="search"/> 
-        <div class="suggestions">       
-        <ul *ngIf="suggestions" >
+        <div id="suggestions" >       
+        <ul id="suggestion-items"  >
         <li *ngFor="let card of suggestions" (click)="selectCard(card)" [class.highlighted]="card.Name === highlightedCardName"  >
             <span>{{card.Name}}</span>
-             <img  src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" alt="{ card.Name }">                         
+             <img  src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png" alt="{ card.Name }">                                      
         </li>
         </ul>
         </div>      
@@ -43,7 +43,7 @@ export class CardSearchComponent implements OnDestroy  {
 
   this.showCardSearchSubscription = interactionService.showCardSearch$.subscribe(
        cardSearchSetup => {
-         console.log("card-search.component", cardSearchSetup.targetCards);
+         //console.log("card-search.component", cardSearchSetup.targetCards);
          this.cardTypes = cardSearchSetup.cardTypes;
         this.show = true;   
         //this.targetCards = cardSearchSetup.targetCards; 
@@ -68,6 +68,9 @@ export class CardSearchComponent implements OnDestroy  {
         if (this.search != "") {
             if (this.previousSearch != this.search) this.selectedIndex = -1;
             this.suggestions = this.cardService.searchCards(this.search,this.cardTypes);
+
+                let suggestionItemsElement = document.getElementById('suggestion-items');
+                if(suggestionItemsElement!= null) Ps.initialize(suggestionItemsElement);
 
             //arrow-down(40)  up(38)
             if (e.keyCode == 40) {

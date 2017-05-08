@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var card_service_1 = require("../card.service");
 var interaction_service_1 = require("../interaction.service");
+//import * as sd from '../../../node_modules/perfect-scrollbar';
+var Ps = require("perfect-scrollbar");
 //import 'perfect-scrollbar' as ps from 'perfect-scrollbar';
 //import { Card, CardSet} from '../models/card'
 var CardSearchComponent = (function () {
@@ -21,7 +23,7 @@ var CardSearchComponent = (function () {
         this.onCardSelected = new core_1.EventEmitter();
         this.selectedIndex = -1;
         this.showCardSearchSubscription = interactionService.showCardSearch$.subscribe(function (cardSearchSetup) {
-            console.log("card-search.component", cardSearchSetup.targetCards);
+            //console.log("card-search.component", cardSearchSetup.targetCards);
             _this.cardTypes = cardSearchSetup.cardTypes;
             _this.show = true;
             //this.targetCards = cardSearchSetup.targetCards; 
@@ -40,6 +42,9 @@ var CardSearchComponent = (function () {
             if (this.previousSearch != this.search)
                 this.selectedIndex = -1;
             this.suggestions = this.cardService.searchCards(this.search, this.cardTypes);
+            var suggestionItemsElement = document.getElementById('suggestion-items');
+            if (suggestionItemsElement != null)
+                Ps.initialize(suggestionItemsElement);
             //arrow-down(40)  up(38)
             if (e.keyCode == 40) {
                 if (this.suggestions != null && this.suggestions.length > 0 && this.suggestions.length > this.selectedIndex) {
@@ -87,7 +92,7 @@ __decorate([
 CardSearchComponent = __decorate([
     core_1.Component({
         selector: 'card-search',
-        template: "    \n      <div class=\"card-search\" [class.show]=\"show\" >        \n        <input [(ngModel)]=\"search\" (keyup)=\"onKey($event)\"  placeholder=\"search\"/> \n        <div class=\"suggestions\">       \n        <ul *ngIf=\"suggestions\" >\n        <li *ngFor=\"let card of suggestions\" (click)=\"selectCard(card)\" [class.highlighted]=\"card.Name === highlightedCardName\"  >\n            <span>{{card.Name}}</span>\n             <img  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" alt=\"{ card.Name }\">                         \n        </li>\n        </ul>\n        </div>      \n      </div>\n  "
+        template: "    \n      <div class=\"card-search\" [class.show]=\"show\" >        \n        <input [(ngModel)]=\"search\" (keyup)=\"onKey($event)\"  placeholder=\"search\"/> \n        <div id=\"suggestions\" >       \n        <ul id=\"suggestion-items\"  >\n        <li *ngFor=\"let card of suggestions\" (click)=\"selectCard(card)\" [class.highlighted]=\"card.Name === highlightedCardName\"  >\n            <span>{{card.Name}}</span>\n             <img  src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" alt=\"{ card.Name }\">                                      \n        </li>\n        </ul>\n        </div>      \n      </div>\n  "
     }),
     __metadata("design:paramtypes", [card_service_1.CardService, interaction_service_1.InteractionService])
 ], CardSearchComponent);

@@ -63,9 +63,9 @@ textarea, input, button { outline: none; }
 .player-board-container{
   position: absolute;
   bottom:250px;
-  left:100px;
+  left:80px;
   height: 120px;
-  width:670px;
+  width:700px;
   text-align: center;
   background-color: rgba(0,0,0, 0.4);
   
@@ -88,17 +88,28 @@ textarea, input, button { outline: none; }
 }
 
 
-.suggestions{ 
+#suggestions{ 
   width:175px;
   height: 525px;
   background-image: url('app/img/card-selector.png');
   background-size: 100%;
   background-repeat: no-repeat;
-  margin-top: 0px;
+  margin-top: 0px;  
+  /*padding-top:40px;*/  
+  position: relative;
 }
 
-.suggestions li span{
+#suggestions li span{
   display: none;
+}
+
+
+.card-search ul{
+  padding-left:15px;      
+  z-index: 10;  
+  position: absolute;  
+  margin-top:40px;
+  height: 440px;
 }
 
 
@@ -111,7 +122,7 @@ textarea, input, button { outline: none; }
    
   background-repeat: no-repeat; 
   left:-185px;
-  transition: 1s ease-in-out;
+  transition: 300ms ease-in-out;
 }
 
 .card-search.show{
@@ -127,15 +138,6 @@ textarea, input, button { outline: none; }
 
 }
 
-.card-search ul{
-  position: absolute;
-  padding-left:15px;
-  margin-top:40px;
-  z-index: 10;
-  overflow-y: hidden;
-  height: 440px;
-
-}
 
 .card-search img{
   max-width: 120px;
@@ -238,4 +240,41 @@ li,ul{
 .btn.brown{
   background-color:#78280C;
   color:#fff; 
+}
+
+
+/* joust styles*/
+.minion {
+    position: relative;
+    display: inline-block;
+    z-index: 4;
+    animation: b .25s ease-out;
+}
+
+div.visuals {
+    position: relative;
+    height: 154px;
+    width: 132px;
+    margin-top: -10%;
+}
+
+div.visuals img {
+    position: absolute;
+    pointer-events: none;
+    vertical-align: middle;
+}
+.minion div.visuals .inplay-portrait {
+    width: 85%;
+    top: 10%;
+    left: 7%;
+    clip-path: url(app/assets/clip-paths.svg#inplay-minion-clip);
+    -webkit-clip-path: ellipse(35% 46% at 51% 50%);  
+}
+
+.minion div.visuals .inplay-base{
+    left:0;     
+}
+
+.minion, .minion div.visuals .effect-sleep, .minion div.visuals .icon-deathrattle, .minion div.visuals .icon-inspire, .minion div.visuals .icon-poisonous, .minion div.visuals .icon-trigger, .minion div.visuals .inplay-base, .minion div.visuals .inplay-buffed, .minion div.visuals .inplay-divine-shield, .minion div.visuals .inplay-enraged, .minion div.visuals .inplay-frozen, .minion div.visuals .inplay-immune, .minion div.visuals .inplay-legendary, .minion div.visuals .inplay-shield, .minion div.visuals .inplay-silenced, .minion div.visuals .inplay-stealth, .minion div.visuals .inplay-taunt, .minion div.visuals .inplay-untargetable {
+    height: 100%;
 }

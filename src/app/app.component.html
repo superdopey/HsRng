@@ -4,7 +4,7 @@
     </div>
     <div class="right-side">
         <player-board [cards]="enemyPlayerBoardCards" (onClearBoard)="onClearBoard($event)"  [targetCards]="0" [isEnemy]="true" ></player-board>
-        <player-board [cards]="playerBoardCards" [targetCards]="1" ></player-board>
+        <player-board [cards]="playerBoardCards" (onClearBoard)="onClearBoard($event)"  [targetCards]="1" ></player-board>
         <player-hand [cards]="playerHandCards" [targetCards]="2" (onCardPlayed)="onCardPlayed($event)"></player-hand>
     </div>
 </div>

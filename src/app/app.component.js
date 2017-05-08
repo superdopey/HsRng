@@ -36,6 +36,7 @@ var AppComponent = (function () {
         this.cardService.initialize().then(function (cards) {
             //this.allCards = cards;
             _this.playerHandCards = cards.slice(9, 19);
+            _this.playerBoardCards = cards.slice(9, 10);
         });
     };
     AppComponent.prototype.ngOnDestroy = function () {
@@ -43,6 +44,7 @@ var AppComponent = (function () {
         this.showCardSearchSubscription.unsubscribe();
     };
     AppComponent.prototype.onClearBoard = function (targetCards) {
+        console.log("clear  board", targetCards);
         switch (targetCards) {
             case 0:
                 //enemy              
@@ -50,6 +52,7 @@ var AppComponent = (function () {
                 break;
             case 1:
                 //player
+                console.log("clear player board");
                 this.playerBoardCards = [];
                 break;
             case 2:

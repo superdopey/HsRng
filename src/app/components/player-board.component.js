@@ -14,6 +14,8 @@ var card_service_1 = require("../card.service");
 var interaction_service_1 = require("../interaction.service");
 var PlayerBoardComponent = (function () {
     /*
+    <minion></minion>
+    
        <div class="actions" >
                  <button (click)="generateMinionBoard()">fill board</button>
                 amount:<input [(ngModel)]="amount" maxLength="1" /><br/>
@@ -36,7 +38,6 @@ var PlayerBoardComponent = (function () {
         this.interactionService.showCardSearch({ targetCards: this.targetCards, cardTypes: [card_1.CardType.MINION] });
     };
     PlayerBoardComponent.prototype.clearBoard = function () {
-        //this.cards =[];
         this.onClearBoard.emit(this.targetCards);
     };
     PlayerBoardComponent.prototype.generateMinionBoard = function () {
@@ -63,7 +64,7 @@ __decorate([
 PlayerBoardComponent = __decorate([
     core_1.Component({
         selector: 'player-board',
-        template: "      \n    <div class=\"player-board-container\" [class.enemy]=\"isEnemy === true\">\n        <ul *ngIf=\"cards\" >\n        <li *ngFor=\"let card of cards\" (dblclick)=\"removeCard(card)\" >      \n            <img src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        <li *ngIf=\"cards.length < 7\" class=\"action-li\">        \n                    \n        </li>\n        </ul>   \n        <div class=\"actions-buttons\" >    \n             <icon-button (click)=\"clearBoard()\" [icon]=\"'fa-times'\"></icon-button>\n             <icon-button (click)=\"showCardSearch()\" [icon]=\"'fa-plus'\"></icon-button>\n        </div>\n  ",
+        template: "      \n    <div class=\"player-board-container\" [class.enemy]=\"isEnemy === true\">\n        <ul *ngIf=\"cards\" >\n        <li *ngFor=\"let card of cards\" (dblclick)=\"removeCard(card)\" >                  \n            <minion [card]=\"card\"></minion>\n        </li>     \n        </ul>   \n        <div class=\"actions-buttons\" >    \n             <icon-button (click)=\"clearBoard()\" [icon]=\"'fa-times'\"></icon-button>\n             <icon-button (click)=\"showCardSearch()\" [icon]=\"'fa-plus'\"></icon-button>\n        </div>\n    </div>\n  ",
     }),
     __metadata("design:paramtypes", [card_service_1.CardService, interaction_service_1.InteractionService])
 ], PlayerBoardComponent);
