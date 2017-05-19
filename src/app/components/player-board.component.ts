@@ -23,16 +23,6 @@ import { InteractionService, TargetCards } from '../interaction.service';
 })
 
 export class PlayerBoardComponent implements ICardContainer {
-/*
-<minion></minion>
-
-   <div class="actions" >    
-             <button (click)="generateMinionBoard()">fill board</button>
-            amount:<input [(ngModel)]="amount" maxLength="1" /><br/>
-            mana:<input [(ngModel)]="mana"  maxLength="1" /><br/>           
-            </div> 
- */
-
 
  constructor(private cardService: CardService,private interactionService: InteractionService) { }
 

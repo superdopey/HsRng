@@ -272,6 +272,12 @@ li,ul{
   color:#fff; 
 }
 
+.btn.red{
+  background-color:#ce0505;
+  color:#fff; 
+}
+
+
 
 /* joust styles*/
 .minion {
@@ -350,4 +356,22 @@ div.visuals img {
     line-height: .95em;
     font-family: belwe_fsextrabold,serif;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.tooltip>div{
+  position: relative;
+}
+
+.tooltip .button-row{
+  position:absolute;
+  right:0px;
+  top:-10px;  
+}
+
+.tooltip .button-row.bottom{
+  position:absolute;
+  top:auto;
+  bottom:-10px;  
+  width:100%;
+  text-align: center;
 }

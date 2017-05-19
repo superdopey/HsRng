@@ -9,28 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var IconButtonComponent = (function () {
-    function IconButtonComponent() {
+var ButtonComponent = (function () {
+    function ButtonComponent() {
         this.color = 'brown';
+        this.text = 'brown';
         this.state = 'active';
     }
-    return IconButtonComponent;
+    return ButtonComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
-], IconButtonComponent.prototype, "icon", void 0);
+], ButtonComponent.prototype, "icon", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", String)
-], IconButtonComponent.prototype, "color", void 0);
-IconButtonComponent = __decorate([
+], ButtonComponent.prototype, "color", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ButtonComponent.prototype, "text", void 0);
+ButtonComponent = __decorate([
     core_1.Component({
-        selector: 'icon-button',
-        // template: `<button [@heroState]="state" (click)="toggleState()"  class="btn icon-btn {{color}}"><i class="fa {{icon}}"></i></button>`,
-        template: "<button  class=\"btn icon-btn {{color}}\"><i class=\"fa {{icon}}\"></i></button>",
+        selector: 'hs-button',
+        template: "<button  class=\"btn icon-btn {{color}}\"><i *ngIf=\"icon\" class=\"fa {{icon}}\"></i><span *ngIf=\"text\" >{{text}}</span></button>"
     }),
     __metadata("design:paramtypes", [])
-], IconButtonComponent);
-exports.IconButtonComponent = IconButtonComponent;
-//# sourceMappingURL=icon-button.component.js.map
+], ButtonComponent);
+exports.ButtonComponent = ButtonComponent;
+//# sourceMappingURL=button.component.js.map

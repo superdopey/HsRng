@@ -29,8 +29,10 @@ import {
 
 export class IconButtonComponent  {
     @Input() icon:string;
+    @Input() color:string = 'brown';
+
     state:string = 'active';
-    color:string = 'brown';
+    
     constructor() { }
 
 /*

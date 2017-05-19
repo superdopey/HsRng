@@ -13,15 +13,6 @@ var card_1 = require("../models/card");
 var card_service_1 = require("../card.service");
 var interaction_service_1 = require("../interaction.service");
 var PlayerBoardComponent = (function () {
-    /*
-    <minion></minion>
-    
-       <div class="actions" >
-                 <button (click)="generateMinionBoard()">fill board</button>
-                amount:<input [(ngModel)]="amount" maxLength="1" /><br/>
-                mana:<input [(ngModel)]="mana"  maxLength="1" /><br/>
-                </div>
-     */
     function PlayerBoardComponent(cardService, interactionService) {
         this.cardService = cardService;
         this.interactionService = interactionService;

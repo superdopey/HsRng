@@ -21,6 +21,7 @@ var PlayerHandComponent = (function () {
         var index = this.cards.indexOf(card);
         if (index > -1) {
             this.cards.splice(index, 1);
+            this.selectedCard = null;
         }
     };
     PlayerHandComponent.prototype.selectCard = function (card) {
@@ -31,6 +32,9 @@ var PlayerHandComponent = (function () {
         this.onCardPlayed.emit(card);
         this.selectedCard = null;
         //remove from cards
+    };
+    PlayerHandComponent.prototype.returnCard = function () {
+        this.selectedCard = null;
     };
     PlayerHandComponent.prototype.deSelectCard = function (card) {
         this.selectedCard = null;
@@ -52,7 +56,7 @@ __decorate([
 PlayerHandComponent = __decorate([
     core_1.Component({
         selector: 'player-hand',
-        template: "      \n                       \n        <div *ngIf=\"selectedCard\" class=\"tooltip\">            \n            <div>\n                <a (click)=\"playCard(selectedCard)\" >Play</a>\n                <img (click)=\"deSelectCard(selectedCard)\" src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{selectedCard.Id}}.png\" title=\"{{selectedCard.Name}}\">                \n            </div>\n        </div>\n        <ul *ngIf=\"cards\" class=\"player-hand-container\">\n        <li *ngFor=\"let card of cards; let i = index\" \n            (dblclick)=\"removeCard(card)\" (click)=\"selectCard(card)\"\n            class=\"player-card\" [ngStyle]=\"{'transform': card | rotateStylePipe:cards.length:i,'margin-left': card|  marginStylePipe:cards.length:i  }\" >      \n            <img src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n        </li>\n        </ul>   \n  "
+        template: "      \n                       \n        <div *ngIf=\"selectedCard\" class=\"tooltip\">            \n            <div>                \n                <img (click)=\"deSelectCard(selectedCard)\" src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{selectedCard.Id}}.png\" title=\"{{selectedCard.Name}}\">                \n                <div class='button-row'>\n                    <hs-button (click)=\"playCard(selectedCard)\" [text]=\"'Play'\" [color]=\"'brown'\" [icon]=\"'fa-chevron-up'\"></hs-button>\n                    <icon-button (click)=\"removeCard(selectedCard)\" [color]=\"'red'\" [icon]=\"'fa-times'\"></icon-button>\n                 </div>\n                 <div class='button-row bottom'>\n                    <hs-button (click)=\"returnCard()\" [text]=\"'Back'\" [color]=\"'brown'\" [icon]=\"'fa-chevron-down'\">sd</hs-button>                 \n                </div>\n            </div>\n        </div>\n        <ul *ngIf=\"cards\" class=\"player-hand-container\">\n        <li *ngFor=\"let card of cards; let i = index\" \n            (dblclick)=\"removeCard(card)\" (click)=\"selectCard(card)\"\n            class=\"player-card\" [ngStyle]=\"{'transform': card | rotateStylePipe:cards.length:i,'margin-left': card|  marginStylePipe:cards.length:i  }\" >      \n            <img src=\"https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{{card.Id}}.png\" title=\"{{card.Name}}\">\n           \n        </li>\n        </ul>   \n  "
     })
 ], PlayerHandComponent);
 exports.PlayerHandComponent = PlayerHandComponent;

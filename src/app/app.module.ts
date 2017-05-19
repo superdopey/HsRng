@@ -9,6 +9,7 @@ import { CardSearchComponent} from './components/card-search.component'
 import { PlayerHandComponent} from './components/player-hand.component'
 import { PlayerBoardComponent} from './components/player-board.component'
 import { IconButtonComponent } from './components/icon-button.component'
+import { ButtonComponent } from './components/button.component'
 import { MinionComponent } from './components/minion.component'
 import { CardGeneratorComponent } from './components/cards-generator.component'
 import { RotateStylePipe,MarginStylePipe} from './pipes'
@@ -23,7 +24,7 @@ import { RotateStylePipe,MarginStylePipe} from './pipes'
     HttpModule,
     JsonpModule    
      ],
-  declarations: [ AppComponent , CardSearchComponent,CardGeneratorComponent,PlayerHandComponent,PlayerBoardComponent,MinionComponent,RotateStylePipe ,MarginStylePipe, IconButtonComponent],
+  declarations: [ AppComponent , CardSearchComponent,CardGeneratorComponent,PlayerHandComponent,PlayerBoardComponent,MinionComponent,RotateStylePipe ,MarginStylePipe, IconButtonComponent,ButtonComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

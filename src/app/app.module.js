@@ -15,6 +15,7 @@ var card_search_component_1 = require("./components/card-search.component");
 var player_hand_component_1 = require("./components/player-hand.component");
 var player_board_component_1 = require("./components/player-board.component");
 var icon_button_component_1 = require("./components/icon-button.component");
+var button_component_1 = require("./components/button.component");
 var minion_component_1 = require("./components/minion.component");
 var cards_generator_component_1 = require("./components/cards-generator.component");
 var pipes_1 = require("./pipes");
@@ -32,7 +33,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             http_1.JsonpModule
         ],
-        declarations: [app_component_1.AppComponent, card_search_component_1.CardSearchComponent, cards_generator_component_1.CardGeneratorComponent, player_hand_component_1.PlayerHandComponent, player_board_component_1.PlayerBoardComponent, minion_component_1.MinionComponent, pipes_1.RotateStylePipe, pipes_1.MarginStylePipe, icon_button_component_1.IconButtonComponent],
+        declarations: [app_component_1.AppComponent, card_search_component_1.CardSearchComponent, cards_generator_component_1.CardGeneratorComponent, player_hand_component_1.PlayerHandComponent, player_board_component_1.PlayerBoardComponent, minion_component_1.MinionComponent, pipes_1.RotateStylePipe, pipes_1.MarginStylePipe, icon_button_component_1.IconButtonComponent, button_component_1.ButtonComponent],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
